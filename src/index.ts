@@ -14,8 +14,8 @@ const URL = process.env.URL || "https://your-heroku-app.herokuapp.com";
 
 bot.telegram.setWebhook(`${URL}/bot${API_TOKEN}`);
 expressApp.use(bot.webhookCallback(`/bot${API_TOKEN}`));
-expressApp.get("/", (req, res) => {
-  res.send("Hello World!");
+expressApp.get("/", (req: Request, res: Response) => {
+  res.send("TGMusicfy Bot");
 });
 expressApp.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
