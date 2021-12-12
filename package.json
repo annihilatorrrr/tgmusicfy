@@ -4,7 +4,7 @@
   "description": "tgmusicfy",
   "main": "index.js",
   "scripts": {
-    "start": "",
+    "start": "node index.js",
     "deploy": "node index.js"
   },
   "repository": {
