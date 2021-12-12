@@ -54,8 +54,15 @@ bot.on("text", async (ctx) => {
           };
         });
 
-        results.map((result) => {
-          ctx.replyWithAudio({ url: result.audio }, { title: result.title, performer: result.performer });
+        results.map(async (result, index) => {
+          try {
+            await ctx.replyWithAudio({ url: result.audio }, { title: result.title, performer: result.performer });
+            if (index === 2 && Math.random() > 0.7) {
+              ctx.reply("Enjoy listening! ❤️");
+            }
+          } catch (error) {
+            ctx.reply("Something went wrong when downloading the file. ☹️");
+          }
         });
       } else {
         ctx.reply("Nothing came up for your query.");
