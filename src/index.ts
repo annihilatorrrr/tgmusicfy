@@ -13,6 +13,7 @@ const PORT = process.env.PORT || 3000;
 const URL = process.env.URL || "https://your-heroku-app.herokuapp.com";
 
 bot.telegram.setWebhook(`${URL}/bot${API_TOKEN}`);
+
 expressApp.use(bot.webhookCallback(`/bot${API_TOKEN}`));
 expressApp.get("/", (req: Request, res: Response) => {
   res.send("TGMusicfy Bot");
@@ -24,7 +25,8 @@ expressApp.listen(PORT, () => {
 bot.start((ctx) => {
   ctx.reply("Welcome to TGMusicfy bot. For search just enter your query");
   ctx.reply("Author: @ssandry");
-  ctx.reply("Made with love!");
+  ctx.reply("Made with love");
+  ctx.reply("❤️");
 });
 
 bot.on("text", async (ctx) => {
