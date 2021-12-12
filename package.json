@@ -25,6 +25,7 @@
     "webpack-cli": "^4.9.1"
   },
   "dependencies": {
+    "dotenv": "^10.0.0",
     "lodash": "^4.17.21",
     "nodemon": "^2.0.15",
     "telegraf": "^4.5.2",
