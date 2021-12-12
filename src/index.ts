@@ -3,11 +3,26 @@ require("dotenv").config();
 import { Telegraf } from "telegraf";
 import axios, { AxiosResponse } from "axios";
 import cheerio from "cheerio";
+import express, { Request, Response } from "express";
 
 const bot = new Telegraf(process.env.TOKEN);
+const expressApp = express();
+
+const API_TOKEN = process.env.API_TOKEN || "";
+const PORT = process.env.PORT || 3000;
+const URL = process.env.URL || "https://your-heroku-app.herokuapp.com";
+
+bot.telegram.setWebhook(`${URL}/bot${API_TOKEN}`);
+expressApp.use(bot.webhookCallback(`/bot${API_TOKEN}`));
+expressApp.get("/", (req, res) => {
+  res.send("Hello World!");
+});
+expressApp.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
 
 bot.start((ctx) => {
-  ctx.reply("Welcome to tmusicfy bot. For search just enter your query");
+  ctx.reply("Welcome to TGMusicfy bot. For search just enter your query");
   ctx.reply("Author: @ssandry");
   ctx.reply("Made with love!");
 });
