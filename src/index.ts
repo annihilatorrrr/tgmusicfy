@@ -10,8 +10,6 @@ bot.start((ctx) => {
   ctx.reply("Welcome to tmusicfy bot. For search just enter your query");
   ctx.reply("Author: @ssandry");
   ctx.reply("Made with love!");
-
-  const $ = cheerio.load('<h2 class="title">Hello world</h2>');
 });
 
 bot.on("text", async (ctx) => {
