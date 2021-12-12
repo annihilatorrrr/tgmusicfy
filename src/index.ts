@@ -1,10 +1,21 @@
 require("dotenv").config();
 
+import express, { Request, Response } from "express";
 import { Telegraf } from "telegraf";
 import axios, { AxiosResponse } from "axios";
 import cheerio from "cheerio";
 
+const app = express();
 const bot = new Telegraf(process.env.TOKEN);
+
+const port = process.env.PORT || 3000;
+
+app.get("/", (req: Request, res: Response) => {
+  res.send("TGMusicfy");
+});
+app.listen(port, () => {
+  console.log(`Listening on port ${port}`);
+});
 
 bot.start((ctx) => {
   ctx.reply("Welcome to tmusicfy bot. For search just enter your query");
