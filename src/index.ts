@@ -15,21 +15,24 @@ bot.start((ctx) => {
 bot.on("text", async (ctx) => {
   if (ctx.message.text !== "/start")
     try {
-      const queryString = ctx.message.text.replaceAll(" ", "%20");
+      const queryString = ctx.message.text.replaceAll(" ", "+");
 
-      const { data }: AxiosResponse<string> = await axios.get(`https://my.mp3ha.org/search/${queryString}`);
+      const { data }: AxiosResponse<string> = await axios.get(`https://downloadmusicvk.ru/audio/search?q=${queryString}`);
       const $ = cheerio.load(data);
 
-      if ($(".idx3 .adv_download").length > 0) {
-        const audios = $(".idx3 .adv_download").toArray().slice(0, 3);
-        const performers = $(".idx3 .idxn meta").toArray().slice(0, 3);
-        const titles = $(".idx3 span.idxo").toArray().slice(0, 3);
+      if ($(".list-view .audio").toArray().length > 2) {
+        const audios = $(".list-view .audio").toArray().slice(0, 3);
+        const performers = $(".audio .audio-artist a").toArray().slice(0, 3);
+        const titles = $(".audio .col-lg-9").toArray().slice(0, 3);
 
-        const results = audios.map((audio, index) => {
-          const title: any = titles[index].children[0];
+        const results = audios.map((href, index) => {
+          const audio: string = href.attribs["data-url"];
+          const performer: any = performers[index].children[0];
+          const title: any = titles[index].children[0].parent.children[4];
+
           return {
-            audio: audio.attribs.href,
-            performer: performers[index].attribs.content,
+            audio: audio,
+            performer: performer.data,
             title: title.data,
           };
         });
