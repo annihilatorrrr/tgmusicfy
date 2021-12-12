@@ -17,7 +17,7 @@ bot.on("text", async (ctx) => {
     try {
       const queryString = ctx.message.text.replaceAll(" ", "+");
 
-      const { data }: AxiosResponse<string> = await axios.get(`https://downloadmusicvk.ru/audio/search?q=${queryString}`);
+      const { data }: AxiosResponse<string> = await axios.get(`${process.env.MUSIC_SOURCE}/search?q=${queryString}`);
       const $ = cheerio.load(data);
 
       if ($(".list-view .audio").toArray().length > 2) {
