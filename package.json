@@ -4,8 +4,8 @@
   "description": "tgmusicfy",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
-    "deploy": "node index.js"
+    "deploy-dist": "webpack --config webpack.common.js",
+    "start": "node ./dist/main.js"
   },
   "repository": {
     "type": "git",
