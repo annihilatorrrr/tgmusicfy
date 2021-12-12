@@ -32,6 +32,7 @@ bot.start((ctx) => {
 bot.on("text", async (ctx) => {
   if (ctx.message.text !== "/start")
     try {
+      ctx.reply("🔎");
       const queryString = ctx.message.text.replaceAll(" ", "+");
 
       const { data }: AxiosResponse<string> = await axios.get(`${process.env.MUSIC_SOURCE}/search?q=${queryString}`);
