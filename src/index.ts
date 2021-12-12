@@ -33,7 +33,7 @@ bot.on("text", async (ctx) => {
           return {
             audio: audio,
             performer: performer.data,
-            title: title.data,
+            title: title.data.replace(" - ", ""),
           };
         });
 
