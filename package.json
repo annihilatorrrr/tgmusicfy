@@ -10,6 +10,10 @@
     "type": "git",
     "url": "git+https://github.com/ssandry/tgmusicfy.git"
   },
+  "engines": {
+    "node": "17.0",
+    "npm": "8.1"
+  },
   "keywords": [
     "telegraf",
     "node",
