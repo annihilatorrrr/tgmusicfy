@@ -1,6 +1,7 @@
 ## TGMusicfy
 
-**Deployed thanks to [Heroku] and [New-Relic]** \
+**Deployed thanks to [Heroku] and [New-Relic]**
+
 Minimalistic Telegram Music Search Bot written in NodeJS and based on Telegraf.
 
 ## Tech Stack
