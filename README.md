@@ -4,7 +4,7 @@
 
 Bots are special Telegram accounts designed to handle messages automatically. Users can interact with bots by sending them command messages in private or group chats. These accounts serve as an interface for code running somewhere on your server.
 
-Minimalistic Telegram Music Search Bot written in TypeScript and based on Telegraf and Express JS.
+Minimalistic Telegram music search bot written in TypeScript and based on Telegraf and Express JS.
 
 The music search is based on the results of the **[service]**
 
