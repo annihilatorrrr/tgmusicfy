@@ -1,4 +1,4 @@
-## TGMusicfy
+## @TGMusicfy
 
 **Deployed thanks to [Heroku] and [New-Relic]** 
 
