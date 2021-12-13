@@ -18,8 +18,6 @@ The music search is based on the results of the **[service]**
 - **[TypeScript]** - Is a strongly typed programming language that builds on JavaScript, giving you better tooling at any scale.
 - **[ExpressJS]** - Fast, flexible, minimalist web framework for Node.js applications.
 
-## Documentations
-
 Made with love ❤️
 
 My Telegram: @ssandry0
