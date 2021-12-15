@@ -5,14 +5,10 @@ import createResults from "./utils/createResults";
 import getData from "./utils/getData";
 
 export default function startBot(bot: Telegraf<Context<Update>>) {
-  bot.start((ctx) => {
-    ctx.reply(`Welcome, ${ctx.message.from.first_name}. For search just enter your query`);
-    setTimeout(() => {
-      ctx.reply("Author: @ssandry0");
-    }, 200);
-    setTimeout(() => {
-      ctx.reply("❤️");
-    }, 400);
+  bot.start(async (ctx) => {
+    await ctx.reply(`Welcome, ${ctx.message.from.first_name}. For search just enter your query`);
+    await ctx.reply("Author: @ssandry0");
+    await ctx.reply("❤️");
   });
 
   bot.on("text", async (ctx) => {
@@ -24,15 +20,15 @@ export default function startBot(bot: Telegraf<Context<Update>>) {
         const $: CheerioAPI = cheerio.load(data);
 
         if ($(".list-view .audio").toArray().length > 4) {
-          createResults($).map(async (result) => {
+          createResults($).map(async (result, index: number) => {
             try {
-              await ctx.replyWithAudio({ url: result.audio }, { title: result.title, performer: result.performer });
+              await ctx.replyWithAudio({ url: result.audio }, { title: result.title, performer: result.performer }).then(() => {
+                if (index === 4) ctx.reply("Enjoy listening! ❤️");
+              });
             } catch (error) {
               ctx.reply("Something went wrong when downloading the file. ☹️");
             }
           });
-
-          ctx.reply("Enjoy listening! ❤️");
         } else {
           ctx.reply("Nothing came up for your query.");
           ctx.reply("☹️");
@@ -44,11 +40,9 @@ export default function startBot(bot: Telegraf<Context<Update>>) {
       }
   });
 
-  bot.hears("❤️", (ctx) => {
-    ctx.reply(`I love you too, ${ctx.message.from.first_name}!!!`);
-    setTimeout(() => {
-      ctx.reply("💖");
-    }, 200);
+  bot.hears("❤️", async (ctx) => {
+    await ctx.reply(`I love you too, ${ctx.message.from.first_name}!!!`);
+    await ctx.reply("💖");
   });
 
   bot.launch();
