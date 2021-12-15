@@ -13,7 +13,7 @@ export default function startBot(bot: Telegraf<Context<Update>>) {
   });
 
   bot.on("text", async (ctx) => {
-    if (ctx.message.text[0] !== "/")
+    if (ctx.message.text[0] !== "/") {
       try {
         if (isMorning(ctx)) {
           await ctx.reply("🥱");
@@ -56,6 +56,7 @@ export default function startBot(bot: Telegraf<Context<Update>>) {
         ctx.reply("🥺");
         console.log(error);
       }
+    }
   });
 
   bot.launch();
