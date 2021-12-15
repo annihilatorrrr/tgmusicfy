@@ -22,19 +22,18 @@ export default function startBot(bot: Telegraf<Context<Update>>) {
           }, 400);
         }
 
-        if (isMorning(ctx)) {
-          setTimeout(async () => {
+        setTimeout(
+          async () => {
             await ctx.reply("🔎");
-          }, 1000);
-        } else {
-          await ctx.reply("🔎");
-        }
+          },
+          isMorning(ctx) ? 1000 : 0,
+        );
 
         const data: string = await getData(ctx);
         const $: CheerioAPI = cheerio.load(data);
 
-        if (isMorning(ctx)) {
-          setTimeout(() => {
+        setTimeout(
+          () => {
             if ($(".list-view .audio").toArray().length > 4) {
               const promises = createResults($).map(async (result) => {
                 try {
@@ -49,8 +48,9 @@ export default function startBot(bot: Telegraf<Context<Update>>) {
               ctx.reply("Nothing came up for your query.");
               ctx.reply("🥺");
             }
-          }, 1000);
-        }
+          },
+          isMorning(ctx) ? 1000 : 0,
+        );
       } catch (error) {
         ctx.reply("Something has gone wrong.");
         ctx.reply("🥺");
