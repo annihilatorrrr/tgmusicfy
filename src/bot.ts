@@ -20,15 +20,14 @@ export default function startBot(bot: Telegraf<Context<Update>>) {
         const $: CheerioAPI = cheerio.load(data);
 
         if ($(".list-view .audio").toArray().length > 4) {
-          createResults($).map(async (result, index: number) => {
+          const promises = createResults($).map(async (result) => {
             try {
-              await ctx.replyWithAudio({ url: result.audio }, { title: result.title, performer: result.performer }).then(() => {
-                if (index === 4) ctx.reply("Enjoy listening! ❤️");
-              });
+              return await ctx.replyWithAudio({ url: result.audio }, { title: result.title, performer: result.performer });
             } catch (error) {
               ctx.reply("Something went wrong when downloading the file. ☹️");
             }
           });
+          Promise.all(promises).then(() => ctx.reply("Enjoy listening! ❤️"));
         } else {
           ctx.reply("Nothing came up for your query.");
           ctx.reply("☹️");
@@ -40,9 +39,11 @@ export default function startBot(bot: Telegraf<Context<Update>>) {
       }
   });
 
-  bot.hears("❤️", async (ctx) => {
-    await ctx.reply(`I love you too, ${ctx.message.from.first_name}!!!`);
-    await ctx.reply("💖");
+  bot.on("sticker", async (ctx) => {
+    if (ctx.message.sticker.emoji === "❤️") {
+      await ctx.reply(`I love you too, ${ctx.message.from.first_name}!!!`);
+      await ctx.reply("💖");
+    }
   });
 
   bot.launch();
