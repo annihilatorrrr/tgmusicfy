@@ -3,6 +3,7 @@ import { Update } from "telegraf/typings/core/types/typegram";
 import cheerio, { CheerioAPI } from "cheerio";
 import createResults from "./utils/createResults";
 import getData from "./utils/getData";
+import isMorning from "./utils/isMorning";
 
 export default function startBot(bot: Telegraf<Context<Update>>) {
   bot.start(async (ctx) => {
@@ -12,38 +13,49 @@ export default function startBot(bot: Telegraf<Context<Update>>) {
   });
 
   bot.on("text", async (ctx) => {
-    if (ctx.message.text[0] !== "/" && ctx.message.text !== "❤️")
+    if (ctx.message.text[0] !== "/")
       try {
-        ctx.reply("🔎");
+        if (isMorning(ctx)) {
+          await ctx.reply("🥱");
+          setTimeout(async () => {
+            await ctx.reply("Good morning 🌞");
+          }, 400);
+        }
+
+        if (isMorning(ctx)) {
+          setTimeout(async () => {
+            await ctx.reply("🔎");
+          }, 1000);
+        } else {
+          await ctx.reply("🔎");
+        }
 
         const data: string = await getData(ctx);
         const $: CheerioAPI = cheerio.load(data);
 
-        if ($(".list-view .audio").toArray().length > 4) {
-          const promises = createResults($).map(async (result) => {
-            try {
-              return await ctx.replyWithAudio({ url: result.audio }, { title: result.title, performer: result.performer });
-            } catch (error) {
-              ctx.reply("Something went wrong when downloading the file. ☹️");
+        if (isMorning(ctx)) {
+          setTimeout(() => {
+            if ($(".list-view .audio").toArray().length > 4) {
+              const promises = createResults($).map(async (result) => {
+                try {
+                  ctx.state.lastMessageDate = new Date();
+                  return await ctx.replyWithAudio({ url: result.audio }, { title: result.title, performer: result.performer });
+                } catch (error) {
+                  ctx.reply("Something went wrong when downloading the file. ☹️");
+                }
+              });
+              Promise.all(promises).then(() => ctx.reply("Enjoy listening! ❤️"));
+            } else {
+              ctx.reply("Nothing came up for your query.");
+              ctx.reply("🥺");
             }
-          });
-          Promise.all(promises).then(() => ctx.reply("Enjoy listening! ❤️"));
-        } else {
-          ctx.reply("Nothing came up for your query.");
-          ctx.reply("☹️");
+          }, 1000);
         }
       } catch (error) {
         ctx.reply("Something has gone wrong.");
         ctx.reply("🥺");
         console.log(error);
       }
-  });
-
-  bot.on("sticker", async (ctx) => {
-    if (ctx.message.sticker.emoji === "❤️") {
-      await ctx.reply(`I love you too, ${ctx.message.from.first_name}!!!`);
-      await ctx.reply("💖");
-    }
   });
 
   bot.launch();
