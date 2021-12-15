@@ -16,7 +16,7 @@ The music search is based on the results of the **[service]**
 - **[Axios]** - Promise based HTTP client for the browser and node.js.
 - **[Cheerio]** - Cheerio parses markup and provides an API for traversing/manipulating the resulting data structure.
 - **[TypeScript]** - Is a strongly typed programming language that builds on JavaScript, giving you better tooling at any scale.
-- **[ExpressJS]** - Fast, flexible, minimalist web framework for Node.js applications.
+
 
 Made with love ❤️
 
