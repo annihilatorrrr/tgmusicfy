@@ -14,7 +14,7 @@ export default function startBot(bot: Telegraf<Context<Update>>) {
 
   bot.on("text", async (ctx) => {
     if (ctx.message.text[0] !== "/") {
-      const isCurrentTimeMorning = isMorning(ctx);
+      const isCurrentTimeMorning: boolean = isMorning(ctx);
 
       try {
         if (isCurrentTimeMorning) {
@@ -42,7 +42,7 @@ export default function startBot(bot: Telegraf<Context<Update>>) {
                   ctx.state.lastMessageDate = new Date();
                   return await ctx.replyWithAudio({ url: result.audio }, { title: result.title, performer: result.performer });
                 } catch (error) {
-                  ctx.reply("Something went wrong when downloading the file. ☹️");
+                  ctx.reply("Something went wrong when downloading the file. 🥺");
                 }
               });
               Promise.all(promises).then(() => ctx.reply("Enjoy listening! ❤️"));
