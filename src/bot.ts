@@ -4,12 +4,13 @@ import cheerio, { CheerioAPI } from "cheerio";
 import createResults from "./utils/createResults";
 import getData from "./utils/getData";
 import isMorning from "./utils/isMorning";
+import { getRandomHeart, getRandomGoodMorningText, getRandomNoResultsText, getRandomGoodMorningEmoji } from "./utils/randomText";
 
 export default function startBot(bot: Telegraf<Context<Update>>) {
   bot.start(async (ctx) => {
     await ctx.reply(`Welcome, ${ctx.message.from.first_name}. For search just enter your query`);
     await ctx.reply("Author: @ssandry0");
-    await ctx.reply("❤️");
+    await ctx.reply(getRandomHeart());
   });
 
   bot.on("text", async (ctx) => {
@@ -20,7 +21,7 @@ export default function startBot(bot: Telegraf<Context<Update>>) {
         if (isCurrentTimeMorning) {
           await ctx.reply("🥱");
           setTimeout(async () => {
-            await ctx.reply("Good morning 🌞");
+            await ctx.reply(`${getRandomGoodMorningText()} ${getRandomGoodMorningEmoji()}`);
           }, 400);
         }
 
@@ -45,9 +46,9 @@ export default function startBot(bot: Telegraf<Context<Update>>) {
                   ctx.reply("Something went wrong when downloading the file. 🥺");
                 }
               });
-              Promise.all(promises).then(() => ctx.reply("Enjoy listening! ❤️"));
+              Promise.all(promises).then(() => ctx.reply(`Enjoy listening! ${getRandomHeart()}`));
             } else {
-              ctx.reply("Nothing came up for your query.");
+              ctx.reply(getRandomNoResultsText());
               ctx.reply("🥺");
             }
           },
