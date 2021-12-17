@@ -17,6 +17,7 @@ The music search is based on the results of the **[service]**
 - **[Cheerio]** - Cheerio parses markup and provides an API for traversing/manipulating the resulting data structure.
 - **[TypeScript]** - Is a strongly typed programming language that builds on JavaScript, giving you better tooling at any scale.
 
+<br />
 
 Made with love ❤️
 
