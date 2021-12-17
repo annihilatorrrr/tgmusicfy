@@ -17,6 +17,9 @@ export default function startBot(bot: Telegraf<Context<Update>>) {
     if (ctx.message.text[0] !== "/") {
       const isCurrentTimeMorning: boolean = isMorning(ctx);
 
+      ctx.reply("ctx.state.lastMessage: ", ctx.state.lastMessage);
+      ctx.reply("ctx.state.lastMessage.getDate(): ", ctx.state.lastMessage.getDate());
+
       try {
         if (isCurrentTimeMorning) {
           await ctx.reply("🥱");
