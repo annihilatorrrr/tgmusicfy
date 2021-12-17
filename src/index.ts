@@ -1,6 +1,7 @@
 require("dotenv").config();
 
 import { Context, Telegraf } from "telegraf";
+import LocalSession from "telegraf-session-local";
 import express, { Request, Response, Express } from "express";
 import startBot from "./bot";
 import { Update } from "telegraf/typings/core/types/typegram";
@@ -13,6 +14,7 @@ const bot: Telegraf<Context<Update>> = new Telegraf(process.env.TOKEN);
 const expressApp: Express = express();
 
 bot.telegram.setWebhook(`${URL}/bot${API_TOKEN}`);
+bot.use(new LocalSession({ database: "db.json" }).middleware());
 
 expressApp.use(bot.webhookCallback(`/bot${API_TOKEN}`));
 expressApp.get("/", (req: Request, res: Response) => {

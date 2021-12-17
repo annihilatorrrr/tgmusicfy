@@ -13,12 +13,11 @@ export default function startBot(bot: Telegraf<Context<Update>>) {
     await ctx.reply(getRandomHeart());
   });
 
-  bot.on("text", async (ctx) => {
+  bot.on("text", async (ctx: any, next) => {
+    ctx.session.newDate = ctx.session.newDate || 0;
+
     if (ctx.message.text[0] !== "/") {
       const isCurrentTimeMorning: boolean = isMorning(ctx);
-
-      ctx.reply("ctx.state.lastMessage: ", ctx.state.lastMessage);
-      ctx.reply("ctx.state.lastMessage.getDate(): ", ctx.state.lastMessage.getDate());
 
       try {
         if (isCurrentTimeMorning) {
@@ -43,7 +42,6 @@ export default function startBot(bot: Telegraf<Context<Update>>) {
             if ($(".list-view .audio").toArray().length > 4) {
               const promises = createResults($).map(async (result) => {
                 try {
-                  ctx.state.lastMessageDate = new Date();
                   return await ctx.replyWithAudio({ url: result.audio }, { title: result.title, performer: result.performer });
                 } catch (error) {
                   ctx.reply("Something went wrong when downloading the file. 🥺");
@@ -63,6 +61,9 @@ export default function startBot(bot: Telegraf<Context<Update>>) {
         console.log(error);
       }
     }
+
+    ctx.session.newDate = new Date().getDate();
+    return next();
   });
 
   bot.launch();
