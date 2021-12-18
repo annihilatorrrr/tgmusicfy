@@ -18,45 +18,33 @@ export default function startBot(bot: Telegraf<Context<Update>>) {
       const isCurrentTimeMorning: boolean = isMorning(ctx);
 
       try {
-        if (isCurrentTimeMorning) {
-          await ctx.reply("🥱");
-          setTimeout(async () => {
-            await ctx.reply(`${getRandomGoodMorningText()} ${getRandomGoodMorningEmoji()}`);
-          }, 400);
-        }
-
-        setTimeout(
-          async () => {
-            await ctx.reply("🔎");
-          },
-          isCurrentTimeMorning ? 1000 : 0,
-        );
+        await ctx.reply("🔎");
 
         const data: string = await getData(ctx);
         const $: CheerioAPI = cheerio.load(data);
 
-        setTimeout(
-          () => {
-            if ($(".list-view .audio").toArray().length > 4) {
-              const promises = createResults($).map(async (result) => {
-                try {
-                  return await ctx.replyWithAudio({ url: result.audio }, { title: result.title, performer: result.performer });
-                } catch (error) {
-                  ctx.reply("Something went wrong when downloading the file. 🥺");
-                }
-              });
-              Promise.all(promises).then(() => ctx.reply(`Enjoy listening! ${getRandomHeart()}`));
-            } else {
-              ctx.reply(getRandomNoResultsText());
-              ctx.reply("🥺");
+        if ($(".list-view .audio").toArray().length > 4) {
+          const promises = createResults($).map(async (result) => {
+            try {
+              return await ctx.replyWithAudio({ url: result.audio }, { title: result.title, performer: result.performer });
+            } catch (error) {
+              ctx.reply("Something went wrong when downloading the file. 🥺");
             }
-          },
-          isCurrentTimeMorning ? 1000 : 0,
-        );
+          });
+          Promise.all(promises).then(() => {
+            ctx.reply(
+              `${isCurrentTimeMorning ? `${getRandomGoodMorningText()} ` : ""}Enjoy listening! ${
+                isCurrentTimeMorning ? getRandomHeart() : getRandomGoodMorningEmoji()
+              }`,
+            );
+          });
+        } else {
+          ctx.reply(getRandomNoResultsText());
+          ctx.reply("🥺");
+        }
       } catch (error) {
-        ctx.reply("Something has gone wrong.");
-        ctx.reply("🥺");
-        console.log(error);
+        await ctx.reply("Something has gone wrong.");
+        await ctx.reply("🥺");
       }
     }
 
