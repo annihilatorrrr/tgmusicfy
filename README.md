@@ -21,9 +21,9 @@ The music search is based on the results of the **[service]**
 
 Made with love ❤️
 
-My Telegram: **@ssandry0** \
-My Behance: **https://www.behance.net/aftertaste** \
-My Dribbble: **https://dribbble.com/ssandry0**
+I'm on Telegram: **@ssandry0** \
+I'm on Behance: **https://www.behance.net/aftertaste** \
+I'm on Dribbble: **https://dribbble.com/ssandry0**
 
 [NodeJS]: <https://nodejs.org/en/>
 [Telegraf]: <https://telegraf.js.org/v3#/>
