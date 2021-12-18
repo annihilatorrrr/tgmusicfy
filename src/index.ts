@@ -7,7 +7,7 @@ import { Update } from "telegraf/typings/core/types/typegram";
 
 const API_TOKEN = process.env.API_TOKEN || "";
 const PORT = process.env.PORT || 3000;
-const URL = process.env.URL || "https://your-heroku-app.herokuapp.com";
+const URL = process.env.URL || "https://tgmusicfy.herokuapp.com/";
 
 const bot: Telegraf<Context<Update>> = new Telegraf(process.env.TOKEN);
 const expressApp: Express = express();
