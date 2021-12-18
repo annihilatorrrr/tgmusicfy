@@ -15,7 +15,7 @@ export default function startBot(bot: Telegraf<Context<Update>>) {
 
   bot.on("text", async (ctx, next) => {
     if (ctx.message.text[0] !== "/") {
-      const isCurrentTimeMorning: boolean = isMorning(ctx);
+      const isCurrentTimeMorning: boolean = isMorning();
 
       try {
         await ctx.reply("🔎");
@@ -39,8 +39,8 @@ export default function startBot(bot: Telegraf<Context<Update>>) {
             );
           });
         } else {
-          ctx.reply(getRandomNoResultsText());
-          ctx.reply("🥺");
+          await ctx.reply(getRandomNoResultsText());
+          await ctx.reply("🥺");
         }
       } catch (error) {
         await ctx.reply("Something has gone wrong.");
