@@ -13,9 +13,7 @@ export default function startBot(bot: Telegraf<Context<Update>>) {
     await ctx.reply(getRandomHeart());
   });
 
-  bot.on("text", async (ctx: any, next) => {
-    ctx.session.newDate = ctx.session.newDate || 0;
-
+  bot.on("text", async (ctx, next) => {
     if (ctx.message.text[0] !== "/") {
       const isCurrentTimeMorning: boolean = isMorning(ctx);
 
@@ -62,7 +60,6 @@ export default function startBot(bot: Telegraf<Context<Update>>) {
       }
     }
 
-    ctx.session.newDate = new Date().getDate();
     return next();
   });
 
