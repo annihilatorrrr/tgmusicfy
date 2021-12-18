@@ -23,7 +23,7 @@ export default function startBot(bot: Telegraf<Context<Update>>) {
         const data: string = await getData(ctx);
         const $: CheerioAPI = cheerio.load(data);
 
-        if ($(".list-view .audio").toArray().length > 4) {
+        if ($(".list-view .audio").toArray().length > 1) {
           const promises = createResults($).map(async (result) => {
             try {
               return await ctx.replyWithAudio({ url: result.audio }, { title: result.title, performer: result.performer });
@@ -39,12 +39,10 @@ export default function startBot(bot: Telegraf<Context<Update>>) {
             );
           });
         } else {
-          await ctx.reply(getRandomNoResultsText());
-          await ctx.reply("🥺");
+          await ctx.reply(`${getRandomNoResultsText()} 🥺`);
         }
       } catch (error) {
-        await ctx.reply("Something has gone wrong.");
-        await ctx.reply("🥺");
+        await ctx.reply("Something has gone wrong. 🥺");
       }
     }
 
