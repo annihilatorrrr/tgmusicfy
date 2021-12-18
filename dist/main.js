@@ -2397,6 +2397,16 @@ eval("\n\nvar punycode = __webpack_require__(/*! punycode */ \"punycode\");\nvar
 
 /***/ }),
 
+/***/ "./node_modules/translit-rus-eng/index.js":
+/*!************************************************!*\
+  !*** ./node_modules/translit-rus-eng/index.js ***!
+  \************************************************/
+/***/ ((module) => {
+
+eval("var translitRusEng = function(enteredValue = '', options = {}){\r\n  var { slug, engToRus, lowerCase } = options\r\n\r\n  // Проверяем, строковая ли переменная enteredValue\r\n  var valueType = 'string';\r\n  if (typeof enteredValue !== 'string') {\r\n    if (Object.prototype.toString.call( enteredValue ) === '[object Array]') {\r\n      valueType = 'array';\r\n      enteredValue = enteredValue.join('%===% ');\r\n    }\r\n    else if (typeof enteredValue === 'object') {\r\n      valueType = 'object';\r\n    }\r\n    else {\r\n      enteredValue = enteredValue.toString();\r\n    }\r\n  }\r\n\r\n  // Сочетания двух букв для транслитерации\r\n\r\n  var doubleLetters = [\r\n    'yo',\r\n    'zh',\r\n    'cz',\r\n    'ch',\r\n    'sh',\r\n    'yu',\r\n    'ju',\r\n    'ya',\r\n    'ja',\r\n    'ts',\r\n    'kh',\r\n    'e`',\r\n    '``'\r\n  ];\r\n\r\n  // Сочетания трёх букв для транслитерации\r\n\r\n  var tripleLetters = [\r\n    'shh'\r\n  ];\r\n\r\n  // Таблицы символов (за основу таблицы для латиницы берём таблицу для кириллицы)\r\n\r\n  var symbolsTableEng = {};\r\n  var symbolsTableRus = {\r\n    'а': 'a',\r\n    'б': 'b',\r\n    'в': 'v',\r\n    'г': 'g',\r\n    'д': 'd',\r\n    'е': 'e',\r\n    'ё': 'yo',\r\n    'ж': 'zh',\r\n    'з': 'z',\r\n    'и': 'i',\r\n    'й': 'j',\r\n    'к': 'k',\r\n    'л': 'l',\r\n    'м': 'm',\r\n    'н': 'n',\r\n    'о': 'o',\r\n    'п': 'p',\r\n    'р': 'r',\r\n    'с': 's',\r\n    'т': 't',\r\n    'у': 'u',\r\n    'ф': 'f',\r\n    'х': 'h',\r\n    'ц': 'cz',\r\n    'ч': 'ch',\r\n    'ш': 'sh',\r\n    'щ': 'shh',\r\n    'ъ': (slug && !engToRus) ? '' : '``',\r\n    'ы': 'y',\r\n    'ь': (slug && !engToRus) ? '' : '`',\r\n    'э': (slug && !engToRus) ? 'e' : 'e`',\r\n    'ю': 'yu',\r\n    'я': 'ya'\r\n  };\r\n\r\n  for (var key in symbolsTableRus) {\r\n    if (symbolsTableRus[key]) {\r\n      symbolsTableEng[symbolsTableRus[key]] = key;\r\n    }\r\n  }\r\n\r\n  // Добавляем в таблицу для латиницы случаи, которых нет в кириллической таблице\r\n\r\n  symbolsTableEng['c'] = 'ц';\r\n  symbolsTableEng['ts'] = 'ц';\r\n  symbolsTableEng['ja'] = 'я';\r\n  symbolsTableEng['ju'] = 'ю';\r\n  symbolsTableEng['kh'] = 'х';\r\n\r\n  // Приводим текст к нижнему регистру\r\n\r\n  var convertLetters = function(enteredValue) {\r\n\r\n    var lettersReady = [];\r\n    var lettersEdited = [];\r\n\r\n    enteredValue = lowerCase ? enteredValue.toLowerCase().split('') : enteredValue.split('');\r\n\r\n    enteredValue.map(function(letter, index){\r\n      if (index > 0 &&\r\n        (doubleLetters.indexOf(enteredValue[index-1] + enteredValue[index]) !== -1)) {\r\n        lettersReady[index-1] = false;\r\n        lettersReady[index] = enteredValue[index-1] + enteredValue[index];\r\n      }\r\n      else if (index > 1 &&\r\n        (tripleLetters.indexOf(enteredValue[index-2] + enteredValue[index-1] + enteredValue[index]) !== -1)) {\r\n        lettersReady[index-1] = lettersReady[index-2] = false;\r\n        lettersReady[index] = enteredValue[index-2] + enteredValue[index-1] + enteredValue[index];\r\n      }\r\n      else {\r\n        lettersReady.push(letter);\r\n      }\r\n    });\r\n\r\n    // Проходим по таблицам, ищем совпадения символов, транслитерируем\r\n\r\n    lettersReady.map(function(letter) {\r\n      var capitalizeLetter = str => str.charAt(0).toUpperCase() + str.slice(1)\r\n      if (letter !== false) {\r\n        var isUpperCase = letter !== '`' && letter !== '``' && (letter === letter.toUpperCase());\r\n        var loweredLetter = letter.toLowerCase();\r\n        if (symbolsTableRus[loweredLetter] !== undefined && !engToRus) {\r\n          var resultingLetter = isUpperCase ? capitalizeLetter(symbolsTableRus[loweredLetter]) : symbolsTableRus[loweredLetter];\r\n          lettersEdited.push(resultingLetter);\r\n        }\r\n        else if (symbolsTableEng[loweredLetter] && engToRus) {\r\n          var resultingLetter = isUpperCase ? capitalizeLetter(symbolsTableEng[loweredLetter]) : symbolsTableEng[loweredLetter];\r\n          lettersEdited.push(resultingLetter);\r\n        }\r\n        else if (loweredLetter === ' ' && (slug && !engToRus)) {\r\n          lettersEdited.push('_');\r\n        }\r\n        else {\r\n          lettersEdited.push(letter);\r\n        }\r\n      }\r\n    });\r\n\r\n    return lettersEdited;\r\n  };\r\n\r\n  // Склеиваем строку, возвращаем\r\n\r\n  if (valueType === 'array') {\r\n    return (convertLetters(enteredValue).join('').split('%===%'));\r\n  }\r\n  else if (valueType === 'object') {\r\n    for (var objKey in enteredValue) {\r\n      if (enteredValue[objKey]) {\r\n        enteredValue[objKey] = convertLetters(enteredValue[objKey]).join('');\r\n      }\r\n    }\r\n    return (enteredValue);\r\n  }\r\n  else {\r\n    return (convertLetters(enteredValue).join(''));\r\n  }\r\n\r\n};\r\n\r\nmodule.exports = translitRusEng;\r\n\n\n//# sourceURL=webpack://tgmusicfy/./node_modules/translit-rus-eng/index.js?");
+
+/***/ }),
+
 /***/ "./src/bot.ts":
 /*!********************!*\
   !*** ./src/bot.ts ***!
@@ -2448,7 +2458,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ getData)\n/* harmony export */ });\n/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ \"./node_modules/axios/index.js\");\n/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);\n\nasync function getData(ctx) {\n    const queryString = ctx.message.text.replaceAll(\" \", \"+\");\n    const { data } = await axios__WEBPACK_IMPORTED_MODULE_0___default().get(`${process.env.MUSIC_SOURCE}/search?q=${queryString}`);\n    return data;\n}\n\n\n//# sourceURL=webpack://tgmusicfy/./src/utils/getData.ts?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ getData)\n/* harmony export */ });\n/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ \"./node_modules/axios/index.js\");\n/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _isRussianLang__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./isRussianLang */ \"./src/utils/isRussianLang.ts\");\n/* harmony import */ var _rusTranslit__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./rusTranslit */ \"./src/utils/rusTranslit.ts\");\n\n\n\nasync function getData(ctx) {\n    let queryString;\n    if ((0,_isRussianLang__WEBPACK_IMPORTED_MODULE_1__[\"default\"])(ctx.message.text)) {\n        queryString = (0,_rusTranslit__WEBPACK_IMPORTED_MODULE_2__[\"default\"])(ctx.message.text).replaceAll(\" \", \"+\");\n    }\n    else {\n        queryString = ctx.message.text.replaceAll(\" \", \"+\");\n    }\n    const { data } = await axios__WEBPACK_IMPORTED_MODULE_0___default().get(`${process.env.MUSIC_SOURCE}/search?q=${queryString}`);\n    return data;\n}\n\n\n//# sourceURL=webpack://tgmusicfy/./src/utils/getData.ts?");
 
 /***/ }),
 
@@ -2474,6 +2484,17 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 
 /***/ }),
 
+/***/ "./src/utils/isRussianLang.ts":
+/*!************************************!*\
+  !*** ./src/utils/isRussianLang.ts ***!
+  \************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ isRussianLang)\n/* harmony export */ });\nfunction isRussianLang(str) {\n    if (/[а-яА-ЯЁё]/.test(str)) {\n        return true;\n    }\n    return false;\n}\n\n\n//# sourceURL=webpack://tgmusicfy/./src/utils/isRussianLang.ts?");
+
+/***/ }),
+
 /***/ "./src/utils/randomText.ts":
 /*!*********************************!*\
   !*** ./src/utils/randomText.ts ***!
@@ -2482,6 +2503,17 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 
 "use strict";
 eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"getRandomHeart\": () => (/* binding */ getRandomHeart),\n/* harmony export */   \"getRandomGoodMorningText\": () => (/* binding */ getRandomGoodMorningText),\n/* harmony export */   \"getRandomNoResultsText\": () => (/* binding */ getRandomNoResultsText),\n/* harmony export */   \"getRandomGoodMorningEmoji\": () => (/* binding */ getRandomGoodMorningEmoji)\n/* harmony export */ });\n/* harmony import */ var _getRandomNumber__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./getRandomNumber */ \"./src/utils/getRandomNumber.ts\");\n/* harmony import */ var _constants___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../constants/ */ \"./src/constants/index.ts\");\n\n\nfunction getRandomHeart() {\n    return _constants___WEBPACK_IMPORTED_MODULE_1__.heartsEmojies[(0,_getRandomNumber__WEBPACK_IMPORTED_MODULE_0__[\"default\"])(_constants___WEBPACK_IMPORTED_MODULE_1__.heartsEmojies.length)];\n}\nfunction getRandomGoodMorningText() {\n    return _constants___WEBPACK_IMPORTED_MODULE_1__.goodMorningTexts[(0,_getRandomNumber__WEBPACK_IMPORTED_MODULE_0__[\"default\"])(_constants___WEBPACK_IMPORTED_MODULE_1__.goodMorningTexts.length)];\n}\nfunction getRandomNoResultsText() {\n    return _constants___WEBPACK_IMPORTED_MODULE_1__.noResults[(0,_getRandomNumber__WEBPACK_IMPORTED_MODULE_0__[\"default\"])(_constants___WEBPACK_IMPORTED_MODULE_1__.noResults.length)];\n}\nfunction getRandomGoodMorningEmoji() {\n    return _constants___WEBPACK_IMPORTED_MODULE_1__.goodMorningEmojies[(0,_getRandomNumber__WEBPACK_IMPORTED_MODULE_0__[\"default\"])(_constants___WEBPACK_IMPORTED_MODULE_1__.goodMorningEmojies.length)];\n}\n\n\n//# sourceURL=webpack://tgmusicfy/./src/utils/randomText.ts?");
+
+/***/ }),
+
+/***/ "./src/utils/rusTranslit.ts":
+/*!**********************************!*\
+  !*** ./src/utils/rusTranslit.ts ***!
+  \**********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ rusTranslit)\n/* harmony export */ });\n/* harmony import */ var translit_rus_eng__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! translit-rus-eng */ \"./node_modules/translit-rus-eng/index.js\");\n/* harmony import */ var translit_rus_eng__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(translit_rus_eng__WEBPACK_IMPORTED_MODULE_0__);\n// @ts-ignore\n\nfunction rusTranslit(string) {\n    return translit_rus_eng__WEBPACK_IMPORTED_MODULE_0___default()(string, { lowerCase: true });\n}\n\n\n//# sourceURL=webpack://tgmusicfy/./src/utils/rusTranslit.ts?");
 
 /***/ }),
 
