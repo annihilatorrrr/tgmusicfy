@@ -9,5 +9,5 @@ export const goodMorningTexts: string[] = [
   "Good morning! By the way, I love you!",
 ];
 export const noResults: string[] = ["Nothing came up for your query.", "Unfortunately, I couldn't find anything.", "I didn't find anything."];
-export const heartsEmojies: string[] = ["❤️", "🧡", "💛", "💚", "💙", "💜", "🤍", "🤎", "💖"];
+export const heartsEmojies: string[] = ["❤️", "🧡", "💛", "💚", "💜", "🤍", "🤎", "💖"];
 export const goodMorningEmojies: string[] = [...heartsEmojies, "🌞", "✨", "🌟", "⭐️", "💫", "🌸", "🌺", "🌹", "🌷", "🌼", "🪴", "🍃", "🕊"];
