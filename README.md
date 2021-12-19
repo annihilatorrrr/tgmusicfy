@@ -2,6 +2,8 @@
 
 **Deployed thanks to [Heroku] and [New-Relic]** 
 
+Go to [bot]
+
 Bots are special Telegram accounts designed to handle messages automatically. Users can interact with bots by sending them command messages in private or group chats. These accounts serve as an interface for code running somewhere on your server.
 
 Minimalistic Telegram music search bot written in TypeScript and based on Telegraf and Express JS.
@@ -35,3 +37,4 @@ I'm on Dribbble: **https://dribbble.com/ssandry0**
 [Cheerio]: <https://www.npmjs.com/package/cheerio>
 [TypeScript]: <https://www.typescriptlang.org/>
 [ExpressJS]: <https://www.typescriptlang.org/>
+[bot]: <t.me/tmusicfy_test_bot>
