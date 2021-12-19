@@ -8,7 +8,7 @@ import { getRandomHeart, getRandomGoodMorningText, getRandomNoResultsText, getRa
 
 export default function startBot(bot: Telegraf<Context<Update>>) {
   bot.start(async (ctx) => {
-    await ctx.reply(`Welcome, ${ctx.message.from.first_name}. For search just enter your query`);
+    await ctx.reply(`Welcome, ${ctx.message.from.first_name}. \n \n To search, simply enter the name of the artist, song`);
     await ctx.reply("Author: @ssandry0");
     await ctx.reply(getRandomHeart());
   });
