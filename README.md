@@ -1,6 +1,6 @@
 ## @TGMusicfy
 
-*Go to [bot]*
+**Go to [bot]**
 
 **Deployed thanks to [Heroku] and [New-Relic]** 
 
