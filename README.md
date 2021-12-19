@@ -37,4 +37,4 @@ I'm on Dribbble: **https://dribbble.com/ssandry0**
 [Cheerio]: <https://www.npmjs.com/package/cheerio>
 [TypeScript]: <https://www.typescriptlang.org/>
 [ExpressJS]: <https://www.typescriptlang.org/>
-[bot]: <t.me/tmusicfy_test_bot>
+[bot]: <https://t.me/tmusicfy_test_bot>
