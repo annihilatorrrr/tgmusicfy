@@ -1,5 +1,7 @@
 ## @TGMusicfy
 
+**Go to [bot]**
+
 **Deployed thanks to [Heroku] and [New-Relic]** 
 
 Bots are special Telegram accounts designed to handle messages automatically. Users can interact with bots by sending them command messages in private or group chats. These accounts serve as an interface for code running somewhere on your server.
@@ -35,3 +37,4 @@ I'm on Dribbble: **https://dribbble.com/ssandry0**
 [Cheerio]: <https://www.npmjs.com/package/cheerio>
 [TypeScript]: <https://www.typescriptlang.org/>
 [ExpressJS]: <https://www.typescriptlang.org/>
+[bot]: <https://t.me/tmusicfy_test_bot>
