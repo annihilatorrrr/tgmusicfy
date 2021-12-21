@@ -1,6 +1,5 @@
 import axios, { AxiosResponse } from "axios";
-import isRussianLang from "./isRussianLang";
-import rusTranslit from "./rusTranslit";
+import { isRussianLang, rusTranslit } from "./rus";
 
 export default async function getData(query: string): Promise<string> {
   let queryString: string;
