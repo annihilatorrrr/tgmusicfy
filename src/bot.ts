@@ -13,6 +13,20 @@ export default function startBot(bot: Telegraf<Context<Update>>) {
     await ctx.reply(getRandomHeart());
   });
 
+  bot.hears("/help", async (ctx, next) => {
+    try {
+      await ctx.reply("Supported commands: ");
+      await ctx.reply(
+        "/recomedations - My favorite music that I'm only willing to share with you. \n \n /analogs - I will share with you similar bots. \n \n /sources - List of sources where I search for music \n \n /dev - About development",
+      );
+      await ctx.reply("To search, simply enter the name of the artist, song");
+      await ctx.reply("Author: @ssandry0");
+    } catch (error) {
+      await ctx.reply("Something has gone wrong. 🥺");
+    }
+    return next();
+  });
+
   bot.on("text", async (ctx, next) => {
     if (ctx.message.text[0] !== "/") {
       try {
