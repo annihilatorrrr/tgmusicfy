@@ -17,7 +17,7 @@ export default function startBot(bot: Telegraf<Context<Update>>) {
     try {
       await ctx.reply("Supported commands: ");
       await ctx.reply(
-        "/recomedations - My favorite music that I'm only willing to share with you. \n \n /analogs - I will share with you similar bots. \n \n /sources - List of sources where I search for music \n \n /dev - About development",
+        "/recomedations - My favorite music that I'm only willing to share with you. \n /analogs - I will share with you similar bots. \n /sources - List of sources where I search for music \n /dev - About development",
       );
       await ctx.reply("To search, simply enter the name of the artist, song");
       await ctx.reply("Author: @ssandry0");
