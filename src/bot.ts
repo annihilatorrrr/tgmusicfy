@@ -20,7 +20,7 @@ export default function startBot(bot: Telegraf<Context<Update>>) {
       try {
         await ctx.reply("🔎");
 
-        const data: string = await getData(ctx);
+        const data: string = await getData(ctx.message.text);
         const $: CheerioAPI = cheerio.load(data);
 
         if ($(".list-view .audio").toArray().length > 1) {
