@@ -1,5 +1,5 @@
 import getRandomNumber from "./getRandomNumber";
-import { heartsEmojies, goodMorningTexts, noResults, goodMorningEmojies } from "../constants/";
+import { heartsEmojies, goodMorningTexts, noResults, goodMorningEmojies, recomendations } from "../constants/";
 
 export function getRandomHeart(): string {
   return heartsEmojies[getRandomNumber(heartsEmojies.length)];
@@ -15,4 +15,8 @@ export function getRandomNoResultsText(): string {
 
 export function getRandomGoodMorningEmoji(): string {
   return goodMorningEmojies[getRandomNumber(goodMorningEmojies.length)];
+}
+
+export function getRandomArtist(): string {
+  return recomendations[getRandomNumber(recomendations.length)];
 }

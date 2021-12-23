@@ -2,7 +2,7 @@ import { Context, Telegraf } from "telegraf";
 import { Update } from "telegraf/typings/core/types/typegram";
 import cheerio, { CheerioAPI } from "cheerio";
 import getData from "./utils/getData";
-import { getRandomHeart } from "./utils/randomText";
+import { getRandomArtist, getRandomHeart } from "./utils/randomText";
 import sendResults from "./utils/actions/sendResults";
 
 export default function startBot(bot: Telegraf<Context<Update>>) {
@@ -35,6 +35,61 @@ export default function startBot(bot: Telegraf<Context<Update>>) {
         const $: CheerioAPI = cheerio.load(data);
 
         await sendResults($, ctx);
+      } catch (error) {
+        await ctx.reply("Something has gone wrong. 🥺");
+      }
+    }
+
+    return next();
+  });
+
+  bot.hears("/recomedations", async (ctx, next) => {
+    if (ctx.message.text[0] !== "/") {
+      try {
+        await ctx.reply("🔎");
+
+        const data: string = await getData(getRandomArtist());
+        const $: CheerioAPI = cheerio.load(data);
+
+        await sendResults($, ctx);
+      } catch (error) {
+        await ctx.reply("Something has gone wrong. 🥺");
+      }
+    }
+
+    return next();
+  });
+
+  bot.hears("/analogs", async (ctx, next) => {
+    if (ctx.message.text[0] !== "/") {
+      try {
+        await ctx.reply("Similar bots: \n @vkmusic_bot \n @Mixvk_bot");
+      } catch (error) {
+        await ctx.reply("Something has gone wrong. 🥺");
+      }
+    }
+
+    return next();
+  });
+
+  bot.hears("/sources", async (ctx, next) => {
+    if (ctx.message.text[0] !== "/") {
+      try {
+        await ctx.reply("At this point in time, only one source is used to search for music: https://downloadmusicvk.ru/");
+      } catch (error) {
+        await ctx.reply("Something has gone wrong. 🥺");
+      }
+    }
+
+    return next();
+  });
+
+  bot.hears("/dev", async (ctx, next) => {
+    if (ctx.message.text[0] !== "/") {
+      try {
+        await ctx.reply("@tgmusicfy");
+        await ctx.reply("Deployed thanks to Heroku and New-Relic");
+        await ctx.reply("GitHub: https://github.com/ssandry/tgmusicfy");
       } catch (error) {
         await ctx.reply("Something has gone wrong. 🥺");
       }
