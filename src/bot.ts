@@ -37,8 +37,6 @@ export default function startBot(bot: Telegraf<Context<Update>>) {
         await sendResults($, ctx);
       } catch (error) {
         await ctx.reply("Something has gone wrong. 🥺");
-        await ctx.reply(String(error.message));
-        await ctx.reply(String(error));
       }
     }
 

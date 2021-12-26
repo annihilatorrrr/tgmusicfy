@@ -6,7 +6,7 @@ export default async function getData(query: string): Promise<string> {
 
   queryString = query.replaceAll(" ", "+");
 
-  const { data }: AxiosResponse<string> = await axios.get(`${process.env.MUSIC_SOURCE}/search?q=${queryString}`);
+  const { data }: AxiosResponse<string> = await axios.get(encodeURI(`${process.env.MUSIC_SOURCE}/search?q=${queryString}`));
 
   return data;
 }
