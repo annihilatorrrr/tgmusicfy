@@ -21,7 +21,7 @@ export default function startBot(bot: Telegraf<Context<Update>>) {
       );
       await ctx.reply("To search, simply enter the name of the artist, song");
     } catch (error) {
-      await ctx.reply("Something has gone wrong. 🥺");
+      await ctx.reply("Something has gone wrong.");
     }
     return next();
   });
@@ -36,7 +36,7 @@ export default function startBot(bot: Telegraf<Context<Update>>) {
 
         await sendResults($, ctx);
       } catch (error) {
-        await ctx.reply("Something has gone wrong. 🥺");
+        await ctx.reply("Something has gone wrong.");
       }
     }
 
@@ -52,7 +52,7 @@ export default function startBot(bot: Telegraf<Context<Update>>) {
 
       await sendResults($, ctx);
     } catch (error) {
-      await ctx.reply("Something has gone wrong. 🥺");
+      await ctx.reply("Something has gone wrong.");
     }
 
     return next();
@@ -62,7 +62,7 @@ export default function startBot(bot: Telegraf<Context<Update>>) {
     try {
       await ctx.reply("Similar bots: \n @vkmusic_bot \n @Mixvk_bot");
     } catch (error) {
-      await ctx.reply("Something has gone wrong. 🥺");
+      await ctx.reply("Something has gone wrong.");
     }
 
     return next();
@@ -72,7 +72,7 @@ export default function startBot(bot: Telegraf<Context<Update>>) {
     try {
       await ctx.reply("At this point in time, only one source is used to search for music: https://downloadmusicvk.ru/");
     } catch (error) {
-      await ctx.reply("Something has gone wrong. 🥺");
+      await ctx.reply("Something has gone wrong.");
     }
 
     return next();
@@ -84,7 +84,7 @@ export default function startBot(bot: Telegraf<Context<Update>>) {
       await ctx.reply("Deployed thanks to Heroku and New-Relic");
       await ctx.reply("GitHub: https://github.com/ssandry/tgmusicfy");
     } catch (error) {
-      await ctx.reply("Something has gone wrong. 🥺");
+      await ctx.reply("Something has gone wrong.");
     }
 
     return next();

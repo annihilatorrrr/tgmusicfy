@@ -11,7 +11,7 @@ export default async function sendResults($: CheerioAPI, ctx: any) {
       try {
         return await ctx.replyWithAudio({ url: result.audio }, { title: result.title, performer: result.performer });
       } catch (error) {
-        ctx.reply("Something went wrong when downloading the file. 🥺");
+        ctx.reply("Something went wrong when downloading the file.");
       }
     });
     Promise.all(promises).then(() => {
@@ -22,6 +22,6 @@ export default async function sendResults($: CheerioAPI, ctx: any) {
       );
     });
   } else {
-    await ctx.reply(`${getRandomNoResultsText()} 🥺`);
+    await ctx.reply(`${getRandomNoResultsText()}.`);
   }
 }
