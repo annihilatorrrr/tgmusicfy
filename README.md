@@ -1,8 +1,10 @@
+![Logo](md/logo.jpg "Logo")
+
 ## @TGMusicfy
 
 **Go to [bot]**
 
-**Deployed thanks to [Heroku] and [New-Relic]** 
+**Deployed thanks to [Heroku] and [New-Relic]**
 
 Bots are special Telegram accounts designed to handle messages automatically. Users can interact with bots by sending them command messages in private or group chats. These accounts serve as an interface for code running somewhere on your server.
 
@@ -27,14 +29,14 @@ I'm on Telegram: **@ssandry0** \
 I'm on Behance: **https://www.behance.net/aftertaste** \
 I'm on Dribbble: **https://dribbble.com/ssandry0**
 
-[NodeJS]: <https://nodejs.org/en/>
-[Telegraf]: <https://telegraf.js.org/v3#/>
-[Heroku]: <https://dashboard.heroku.com/>
-[New-Relic]: <https://newrelic.com/>
-[Axios]: <https://newrelic.com/>
-[Webpack]: <https://webpack.js.org/>
-[service]: <https://downloadmusicvk.ru/>
-[Cheerio]: <https://www.npmjs.com/package/cheerio>
-[TypeScript]: <https://www.typescriptlang.org/>
-[ExpressJS]: <https://www.typescriptlang.org/>
-[bot]: <https://t.me/tmusicfy_test_bot>
+[nodejs]: https://nodejs.org/en/
+[telegraf]: https://telegraf.js.org/v3#/
+[heroku]: https://dashboard.heroku.com/
+[new-relic]: https://newrelic.com/
+[axios]: https://newrelic.com/
+[webpack]: https://webpack.js.org/
+[service]: https://downloadmusicvk.ru/
+[cheerio]: https://www.npmjs.com/package/cheerio
+[typescript]: https://www.typescriptlang.org/
+[expressjs]: https://www.typescriptlang.org/
+[bot]: https://t.me/tmusicfy_test_bot
