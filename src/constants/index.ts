@@ -22,4 +22,6 @@ export const recomendations: string[] = [
   "Louis the Child",
   "Frank Ocean",
   "Daft Punk",
+  "Crystal Castles",
+  "Melanie Martinez",
 ];
