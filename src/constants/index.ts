@@ -1,5 +1,5 @@
 export const noResults: string[] = ["Nothing came up for your query.", "Unfortunately, I couldn't find anything.", "I didn't find anything."];
-export const heartsEmojies: string[] = ["💜", "🤍", "💖"];
+export const heartsEmojies: string[] = ["💜", "💖", "💝", "💗", "💓"];
 export const recomendations: string[] = [
   "Chiiild",
   "Itoko Toma",
@@ -16,5 +16,5 @@ export const recomendations: string[] = [
   "Mura Masa",
   "Ironomi",
   "Winona Oak",
-  "Lo fi Le vi"
+  "LO FI LE VI",
 ];
