@@ -16,4 +16,5 @@ export const recomendations: string[] = [
   "Mura Masa",
   "Ironomi",
   "Winona Oak",
+  "Lo fi Le vi"
 ];
