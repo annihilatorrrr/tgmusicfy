@@ -2,7 +2,7 @@ import { CheerioAPI } from "cheerio";
 import createResults from "../createResults";
 import { getRandomHeart, getRandomNoResultsText } from "../randomText";
 
-export default async function sendResults($: CheerioAPI, ctx: any) {
+export default async function sendResults($: CheerioAPI, ctx: any): Promise<void> {
   if ($(".list-view .audio").toArray().length > 0) {
     const promises = createResults($).map(async (result) => {
       try {

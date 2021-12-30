@@ -5,7 +5,7 @@ import cheerio, { CheerioAPI } from "cheerio";
 import getData from "./utils/getData";
 import sendResults from "./utils/actions/sendResults";
 
-export default function startBot(bot: Telegraf<Context<Update>>) {
+export default function startBot(bot: Telegraf<Context<Update>>): void {
   bot.start(async (ctx) => {
     await ctx.reply(`Welcome, ${ctx.message.from.first_name}. \n \n To search, simply enter the name of the artist, song`);
     await ctx.reply("See /help for a list of commands");
