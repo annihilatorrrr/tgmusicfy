@@ -18,4 +18,5 @@ export const recomendations: string[] = [
   "Winona Oak",
   "LO FI LE VI",
   "Holly Humberstone",
+  "Park Hye Jin",
 ];
