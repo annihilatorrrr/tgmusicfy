@@ -15,6 +15,6 @@ export default async function sendResults($: CheerioAPI, ctx: any) {
       ctx.reply(`Enjoy listening! ${getRandomHeart()}`);
     });
   } else {
-    await ctx.reply(`${getRandomNoResultsText()}.`);
+    await ctx.reply(`${getRandomNoResultsText()}`);
   }
 }
