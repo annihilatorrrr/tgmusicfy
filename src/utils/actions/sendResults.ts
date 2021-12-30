@@ -3,7 +3,7 @@ import createResults from "../createResults";
 import { getRandomHeart, getRandomNoResultsText } from "../randomText";
 
 export default async function sendResults($: CheerioAPI, ctx: any) {
-  if ($(".list-view .audio").toArray().length > 1) {
+  if ($(".list-view .audio").toArray().length > 0) {
     const promises = createResults($).map(async (result) => {
       try {
         return await ctx.replyWithAudio({ url: result.audio }, { title: result.title, performer: result.performer });
