@@ -17,7 +17,7 @@ export default function startBot(bot: Telegraf<Context<Update>>) {
     try {
       await ctx.reply("Supported commands: ");
       await ctx.reply(
-        "/recomedations - My favorite music that I'm only willing to share with you. \n /analogs - I will share with you similar bots. \n /sources - List of sources where I search for music \n /dev - About development",
+        "/recomedations (Or /r) - My favorite music that I'm only willing to share with you. \n /analogs - I will share with you similar bots. \n /sources - List of sources where I search for music \n /dev - About development",
       );
       await ctx.reply("To search, simply enter the name of the artist, song");
     } catch (error) {
@@ -44,6 +44,21 @@ export default function startBot(bot: Telegraf<Context<Update>>) {
   });
 
   bot.hears("/recomedations", async (ctx, next) => {
+    try {
+      await ctx.reply("🔎");
+
+      const data: string = await getData(getRandomArtist());
+      const $: CheerioAPI = cheerio.load(data);
+
+      await sendResults($, ctx);
+    } catch (error) {
+      await ctx.reply("Something has gone wrong.");
+    }
+
+    return next();
+  });
+
+  bot.hears("/r", async (ctx, next) => {
     try {
       await ctx.reply("🔎");
 

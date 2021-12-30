@@ -1,11 +1,8 @@
 import { CheerioAPI } from "cheerio";
 import createResults from "../createResults";
-import isMorning from "../isMorning";
-import { getRandomGoodMorningEmoji, getRandomGoodMorningText, getRandomHeart, getRandomNoResultsText } from "../randomText";
+import { getRandomHeart, getRandomNoResultsText } from "../randomText";
 
 export default async function sendResults($: CheerioAPI, ctx: any) {
-  const isCurrentTimeMorning: boolean = isMorning();
-
   if ($(".list-view .audio").toArray().length > 1) {
     const promises = createResults($).map(async (result) => {
       try {
@@ -15,11 +12,7 @@ export default async function sendResults($: CheerioAPI, ctx: any) {
       }
     });
     Promise.all(promises).then(() => {
-      ctx.reply(
-        `${isCurrentTimeMorning ? `${getRandomGoodMorningText()} ` : ""}Enjoy listening! ${
-          isCurrentTimeMorning ? getRandomHeart() : getRandomGoodMorningEmoji()
-        }`,
-      );
+      ctx.reply(`Enjoy listening! ${getRandomHeart()}`);
     });
   } else {
     await ctx.reply(`${getRandomNoResultsText()}.`);
