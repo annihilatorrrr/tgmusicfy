@@ -1,4 +1,4 @@
-![Logo](md/logo.jpg "Logo")
+![Logo](md/logo.png "Logo")
 
 ## @TGMusicfy
 
