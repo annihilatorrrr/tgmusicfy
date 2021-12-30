@@ -1,13 +1,13 @@
 require("dotenv").config();
 
 import { Context, Telegraf } from "telegraf";
+import { Update } from "telegraf/typings/core/types/typegram";
 import express, { Request, Response, Express } from "express";
 import startBot from "./bot";
-import { Update } from "telegraf/typings/core/types/typegram";
 
-const API_TOKEN = process.env.API_TOKEN || "";
-const PORT = process.env.PORT || 3000;
-const URL = process.env.URL || "https://tgmusicfy.herokuapp.com/";
+const API_TOKEN: string = process.env.API_TOKEN || "";
+const PORT: string | 3000 = process.env.PORT || 3000;
+const URL: string = process.env.URL || "https://tgmusicfy.herokuapp.com/";
 
 const bot: Telegraf<Context<Update>> = new Telegraf(process.env.TOKEN);
 const expressApp: Express = express();
