@@ -73,6 +73,21 @@ export default function startBot(bot: Telegraf<Context<Update>>): void {
     return next();
   });
 
+  bot.hears("/top", async (ctx, next) => {
+    try {
+      await ctx.reply("🔎");
+
+      const data: string = await getData("__popular");
+      const $: CheerioAPI = cheerio.load(data);
+
+      await sendResults($, ctx);
+    } catch (error) {
+      await ctx.reply("Something has gone wrong.");
+    }
+
+    return next();
+  });
+
   bot.hears("/analogs", async (ctx, next) => {
     try {
       await ctx.reply("Similar bots: \n @vkmusic_bot \n @Mixvk_bot");
