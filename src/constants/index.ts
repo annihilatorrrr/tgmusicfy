@@ -19,4 +19,6 @@ export const recomendations: string[] = [
   "LO FI LE VI",
   "Holly Humberstone",
   "Park Hye Jin",
+  "Jordan Rakei",
+  "The Drums",
 ];
