@@ -21,4 +21,5 @@ export const recomendations: string[] = [
   "Park Hye Jin",
   "Jordan Rakei",
   "The Drums",
+  "The XX",
 ];
