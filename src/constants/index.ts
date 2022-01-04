@@ -22,4 +22,5 @@ export const recomendations: string[] = [
   "Jordan Rakei",
   "The Drums",
   "The XX",
+  "Harrison Brome",
 ];
