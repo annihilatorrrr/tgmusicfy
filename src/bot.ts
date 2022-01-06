@@ -100,7 +100,7 @@ export default function startBot(bot: Telegraf<Context<Update>>): void {
 
   bot.hears("/sources", async (ctx, next) => {
     try {
-      await ctx.reply("At this point in time, only one source is used to search for music: https://downloadmusicvk.ru/");
+      await ctx.reply("Source is used to search for music: https://downloadmusicvk.ru/");
     } catch (error) {
       await ctx.reply("Something has gone wrong.");
     }
