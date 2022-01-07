@@ -25,4 +25,5 @@ export const recomendations: string[] = [
   "Harrison Brome",
   "Sales",
   "Slowdive",
+  "Joey bada",
 ];
