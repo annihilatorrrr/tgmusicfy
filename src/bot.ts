@@ -4,6 +4,7 @@ import { getRandomArtist, getRandomHeart } from "./utils/randomText";
 import cheerio, { CheerioAPI } from "cheerio";
 import getData from "./utils/getData";
 import sendResults from "./utils/actions/sendResults";
+import { IResponse } from "./types";
 
 export default function startBot(bot: Telegraf<Context<Update>>): void {
   bot.start(async (ctx) => {
@@ -31,7 +32,7 @@ export default function startBot(bot: Telegraf<Context<Update>>): void {
       try {
         await ctx.reply("🔎");
 
-        const data: string = await getData(ctx.message.text);
+        const { data }: IResponse = await getData(ctx.message.text);
         const $: CheerioAPI = cheerio.load(data);
 
         await sendResults($, ctx);
@@ -47,7 +48,7 @@ export default function startBot(bot: Telegraf<Context<Update>>): void {
     try {
       await ctx.reply("🔎");
 
-      const data: string = await getData(getRandomArtist());
+      const { data }: IResponse = await getData(getRandomArtist());
       const $: CheerioAPI = cheerio.load(data);
 
       await sendResults($, ctx);
@@ -62,7 +63,7 @@ export default function startBot(bot: Telegraf<Context<Update>>): void {
     try {
       await ctx.reply("🔎");
 
-      const data: string = await getData(getRandomArtist());
+      const { data }: IResponse = await getData(getRandomArtist());
       const $: CheerioAPI = cheerio.load(data);
 
       await sendResults($, ctx);
@@ -77,7 +78,7 @@ export default function startBot(bot: Telegraf<Context<Update>>): void {
     try {
       await ctx.reply("🔎");
 
-      const data: string = await getData("__popular");
+      const { data }: IResponse = await getData("__popular");
       const $: CheerioAPI = cheerio.load(data);
 
       await sendResults($, ctx);
