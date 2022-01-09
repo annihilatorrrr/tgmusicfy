@@ -46,7 +46,7 @@ export default function startBot(bot: Telegraf<Context<Update>>): void {
 
   bot.hears("/recomedations", async (ctx, next) => {
     try {
-      await ctx.reply("🔎");
+      await ctx.replyWithDice();
 
       const { data }: IResponse = await getData(getRandomArtist());
       const $: CheerioAPI = cheerio.load(data);
