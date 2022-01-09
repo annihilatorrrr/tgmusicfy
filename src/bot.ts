@@ -1,10 +1,10 @@
 import { Context, Telegraf } from "telegraf";
 import { Update } from "telegraf/typings/core/types/typegram";
 import { getRandomArtist, getRandomHeart } from "./utils/randomText";
+import { IResponse } from "./types";
 import cheerio, { CheerioAPI } from "cheerio";
 import getData from "./utils/getData";
 import sendResults from "./utils/actions/sendResults";
-import { IResponse } from "./types";
 
 export default function startBot(bot: Telegraf<Context<Update>>): void {
   bot.start(async (ctx) => {
