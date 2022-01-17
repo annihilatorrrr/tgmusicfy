@@ -30,4 +30,5 @@ export const recomendations: string[] = [
   "Joey bada",
   "Joey pecoraro",
   "Dead Poet Society",
+  "good morning jazz academy",
 ];
