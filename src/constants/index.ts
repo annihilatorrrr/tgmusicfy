@@ -7,6 +7,8 @@ export const recomendations: string[] = [
   "The 1975",
   "Hello Saferide",
   "Clairo",
+  "Claire laffut",
+  "Araki shin",
   "polnalyubvi",
   "Louis the Child",
   "Frank Ocean",
@@ -26,5 +28,6 @@ export const recomendations: string[] = [
   "Sales",
   "Slowdive",
   "Joey bada",
+  "Joey pecoraro",
   "Dead Poet Society",
 ];
