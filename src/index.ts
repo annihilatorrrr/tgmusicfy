@@ -18,8 +18,6 @@ expressApp.use(bot.webhookCallback(`/bot${API_TOKEN}`));
 expressApp.get("/", (req: Request, res: Response) => {
   res.send("TGMusicfy Bot");
 });
-expressApp.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
+expressApp.listen(PORT);
 
 startBot(bot);
