@@ -34,4 +34,5 @@ export const recomendations: string[] = [
   "Twenty One Pilots",
   "Nick Cave",
   "Dead man's bones",
+  "Zanski",
 ];
