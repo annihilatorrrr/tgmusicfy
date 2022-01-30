@@ -1,4 +1,4 @@
-![Logo](md/newMD.png "Logo")
+![Logo](md/frame.png "Logo")
 
 ## @TGMusicfy
 
