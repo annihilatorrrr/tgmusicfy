@@ -25,7 +25,7 @@ The music search is based on the results of the **[service]**
 
 Made with love ❤️
 
-I'm on Telegram: **@ssandry0** \
+I'm on Telegram: **@hschhhwwwo0o** \
 I'm on Behance: **https://www.behance.net/aftertaste** \
 I'm on Dribbble: **https://dribbble.com/ssandry0**
 
@@ -39,4 +39,4 @@ I'm on Dribbble: **https://dribbble.com/ssandry0**
 [cheerio]: https://www.npmjs.com/package/cheerio
 [typescript]: https://www.typescriptlang.org/
 [expressjs]: https://www.typescriptlang.org/
-[bot]: https://t.me/tmusicfy_test_bot
+[bot]: https://t.me/TGMusicfyBot
