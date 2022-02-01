@@ -39,4 +39,4 @@ I'm on Dribbble: **https://dribbble.com/ssandry0**
 [cheerio]: https://www.npmjs.com/package/cheerio
 [typescript]: https://www.typescriptlang.org/
 [expressjs]: https://www.typescriptlang.org/
-[bot]: https://t.me/tmusicfy_test_bot
+[bot]: https://t.me/TGMusicfyBot
