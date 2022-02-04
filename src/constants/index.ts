@@ -38,4 +38,5 @@ export const recomendations: string[] = [
   "Юлия Кошкина",
   "Hollow Coves",
   "Connan Mockasin",
+  "Olivia Rodrigo",
 ];
