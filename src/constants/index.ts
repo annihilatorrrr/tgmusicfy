@@ -43,4 +43,5 @@ export const recomendations: string[] = [
   "Bibio",
   "Car Seat Headrest",
   "White katana",
+  "Princess Chelsea",
 ];
