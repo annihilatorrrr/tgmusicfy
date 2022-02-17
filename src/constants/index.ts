@@ -41,4 +41,6 @@ export const recomendations: string[] = [
   "Olivia Rodrigo",
   "The lumineers",
   "Bibio",
+  "Car Seat Headrest",
+  "White katana",
 ];
