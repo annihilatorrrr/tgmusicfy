@@ -44,4 +44,13 @@ export const recomendations: string[] = [
   "Car Seat Headrest",
   "White katana",
   "Princess Chelsea",
+  "Jack Stauber",
+  "Alvvays",
+  "Dominic Fike",
+  "RHYE",
+  "стереополина",
+  "Years & Years",
+  "London Grammar",
+  "foals",
+  "Colouring",
 ];
