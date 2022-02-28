@@ -1,4 +1,4 @@
-![Logo](md/nnn.png "Logo")
+![GitHub Dark](md/nnn.png#gh-light-mode-only)
 
 ## @TGMusicfy
 
