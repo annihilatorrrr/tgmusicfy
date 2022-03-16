@@ -53,4 +53,5 @@ export const recomendations: string[] = [
   "London Grammar",
   "foals",
   "Colouring",
+  "cleopatrick",
 ];
