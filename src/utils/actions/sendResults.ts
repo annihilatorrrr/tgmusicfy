@@ -6,7 +6,10 @@ export default async function sendResults($: CheerioAPI, ctx: any): Promise<void
   if ($(".list-view .audio").toArray().length > 0) {
     const promises = createResults($).map(async (result) => {
       try {
-        return await ctx.replyWithAudio({ url: result.audio }, { title: result.title, performer: result.performer });
+        return await ctx.replyWithAudio(
+          { url: result.audio },
+          { title: result.title, performer: result.performer },
+        );
       } catch (error) {
         ctx.reply("Something went wrong when downloading the file.");
       }

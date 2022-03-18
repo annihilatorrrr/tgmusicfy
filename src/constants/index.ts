@@ -1,4 +1,8 @@
-export const noResults: string[] = ["Nothing came up for your query.", "Unfortunately, I couldn't find anything.", "I didn't find anything."];
+export const noResults: string[] = [
+  "Nothing came up for your query.",
+  "Unfortunately, I couldn't find anything.",
+  "I didn't find anything.",
+];
 export const heartsEmojies: string[] = ["💜", "💖", "💝", "💗", "💓"];
 export const recomendations: string[] = [
   "Chiiild",
