@@ -10,10 +10,17 @@ import { sourcesBotCommand } from "./commands/sources";
 import { devBotCommand } from "./commands/dev";
 
 export default function startBot(bot: Telegraf<Context<Update>>): void {
-  [startBotCommand, helpBotCommand, textBotCommand, recomendationsBotCommand, topBotCommand, analogsBotCommand, sourcesBotCommand, devBotCommand].map(
-    (command) => {
-      command(bot);
-    },
-  );
+  [
+    startBotCommand,
+    helpBotCommand,
+    textBotCommand,
+    recomendationsBotCommand,
+    topBotCommand,
+    analogsBotCommand,
+    sourcesBotCommand,
+    devBotCommand,
+  ].map((command) => {
+    command(bot);
+  });
   bot.launch();
 }
