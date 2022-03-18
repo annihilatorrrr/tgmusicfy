@@ -8,6 +8,9 @@ export default async function getData(query: IQuery): Promise<{ data: string }> 
       await axios.get(
         encodeURI(`${process.env.MUSIC_SOURCE}/popular?only_eng=1&genreId=0`),
       );
+      await axios.get(
+        encodeURI(`${process.env.MUSIC_SOURCE}/popular?only_eng=1&genreId=0`),
+      );
       const res: AxiosResponse = await axios.get(
         encodeURI(`${process.env.MUSIC_SOURCE}/popular?only_eng=1&genreId=0`),
       );
@@ -16,6 +19,7 @@ export default async function getData(query: IQuery): Promise<{ data: string }> 
       };
     default:
       let queryString: string = query.replaceAll(" ", "+");
+      await axios.get(encodeURI(`${process.env.MUSIC_SOURCE}/search?q=${queryString}`));
       await axios.get(encodeURI(`${process.env.MUSIC_SOURCE}/search?q=${queryString}`));
       const { data }: AxiosResponse = await axios.get(
         encodeURI(`${process.env.MUSIC_SOURCE}/search?q=${queryString}`),
