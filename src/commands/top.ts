@@ -9,10 +9,8 @@ function topBotCommand(bot: Telegraf<Context<Update>>) {
   bot.hears("/top", async (ctx, next) => {
     try {
       await ctx.reply("🔎");
-
       const { data }: IResponse = await getData("__popular");
       const $: CheerioAPI = cheerio.load(data);
-
       await sendResults($, ctx);
     } catch (error) {
       await ctx.reply("Something has gone wrong.");

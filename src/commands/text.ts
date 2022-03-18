@@ -10,10 +10,8 @@ function textBotCommand(bot: Telegraf<Context<Update>>) {
     if (ctx.message.text[0] !== "/") {
       try {
         await ctx.reply("🔎");
-
         const { data }: IResponse = await getData(ctx.message.text);
         const $: CheerioAPI = cheerio.load(data);
-
         await sendResults($, ctx);
       } catch (error) {
         await ctx.reply("Something has gone wrong.");

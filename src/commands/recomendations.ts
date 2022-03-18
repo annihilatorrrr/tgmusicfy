@@ -10,10 +10,10 @@ function recomendationsBotCommand(bot: Telegraf<Context<Update>>) {
   bot.hears("/recomedations", async (ctx, next) => {
     try {
       await ctx.replyWithDice();
-
-      const { data }: IResponse = await getData(getRandomArtist());
+      const query: string = getRandomArtist();
+      await ctx.reply(query);
+      const { data }: IResponse = await getData(query);
       const $: CheerioAPI = cheerio.load(data);
-
       await sendResults($, ctx);
     } catch (error) {
       await ctx.reply("Something has gone wrong.");
@@ -23,11 +23,11 @@ function recomendationsBotCommand(bot: Telegraf<Context<Update>>) {
 
   bot.hears("/r", async (ctx, next) => {
     try {
-      await ctx.reply("🔎");
-
-      const { data }: IResponse = await getData(getRandomArtist());
+      await ctx.replyWithDice();
+      const query: string = getRandomArtist();
+      await ctx.reply(query);
+      const { data }: IResponse = await getData(query);
       const $: CheerioAPI = cheerio.load(data);
-
       await sendResults($, ctx);
     } catch (error) {
       await ctx.reply("Something has gone wrong.");
