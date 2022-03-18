@@ -4,7 +4,7 @@ import createResults from "../createResults";
 
 export default async function sendResults($: CheerioAPI, ctx: any): Promise<void> {
   if ($(".list-view .audio").toArray().length > 0) {
-    const promises = createResults($).map(async (result) => {
+    const promises: Promise<any>[] = createResults($).map(async (result) => {
       try {
         return await ctx.replyWithAudio(
           { url: result.audio },
