@@ -1,10 +1,11 @@
 import axios, { AxiosResponse } from "axios";
+import { IResponse } from "../types";
 
 type IQuery = string | "__popular";
 
-export default async function getData(query: IQuery): Promise<{ data: string }> {
-  let testCounter = 0;
-  const testLimit = 10;
+export default async function getData(query: IQuery): Promise<IResponse> {
+  let testCounter: number = 0;
+  const testLimit: number = 10;
   async function testQuery(query: string) {
     if (testCounter <= testLimit) {
       await axios.get(encodeURI(query));
