@@ -2404,7 +2404,95 @@ eval("\n\nvar punycode = __webpack_require__(/*! punycode */ \"punycode\");\nvar
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ startBot)\n/* harmony export */ });\n/* harmony import */ var _utils_randomText__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./utils/randomText */ \"./src/utils/randomText.ts\");\n/* harmony import */ var cheerio__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! cheerio */ \"./node_modules/cheerio/lib/index.js\");\n/* harmony import */ var cheerio__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(cheerio__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var _utils_getData__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./utils/getData */ \"./src/utils/getData.ts\");\n/* harmony import */ var _utils_actions_sendResults__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./utils/actions/sendResults */ \"./src/utils/actions/sendResults.ts\");\n\n\n\n\nfunction startBot(bot) {\n    bot.start(async (ctx) => {\n        await ctx.reply(`Welcome, ${ctx.message.from.first_name}. \\n \\n To search, simply enter the name of the artist, song`);\n        await ctx.reply(\"See /help for a list of commands\");\n        await ctx.reply(\"Author: @ssandry0\");\n        await ctx.reply((0,_utils_randomText__WEBPACK_IMPORTED_MODULE_0__.getRandomHeart)());\n    });\n    bot.hears(\"/help\", async (ctx, next) => {\n        try {\n            await ctx.reply(\"Supported commands: \");\n            await ctx.reply(\"/recomedations (Or /r) - My favorite music that I'm only willing to share with you. \\n /top - Popular tracks. \\n /analogs - I will share with you similar bots. \\n /sources - List of sources where I search for music \\n /dev - About development\");\n            await ctx.reply(\"To search, simply enter the name of the artist, song\");\n        }\n        catch (error) {\n            await ctx.reply(\"Something has gone wrong.\");\n        }\n        return next();\n    });\n    bot.on(\"text\", async (ctx, next) => {\n        if (ctx.message.text[0] !== \"/\") {\n            try {\n                await ctx.reply(\"🔎\");\n                const { data } = await (0,_utils_getData__WEBPACK_IMPORTED_MODULE_2__[\"default\"])(ctx.message.text);\n                const $ = cheerio__WEBPACK_IMPORTED_MODULE_1___default().load(data);\n                await (0,_utils_actions_sendResults__WEBPACK_IMPORTED_MODULE_3__[\"default\"])($, ctx);\n            }\n            catch (error) {\n                await ctx.reply(\"Something has gone wrong.\");\n            }\n        }\n        return next();\n    });\n    bot.hears(\"/recomedations\", async (ctx, next) => {\n        try {\n            await ctx.replyWithDice();\n            const { data } = await (0,_utils_getData__WEBPACK_IMPORTED_MODULE_2__[\"default\"])((0,_utils_randomText__WEBPACK_IMPORTED_MODULE_0__.getRandomArtist)());\n            const $ = cheerio__WEBPACK_IMPORTED_MODULE_1___default().load(data);\n            await (0,_utils_actions_sendResults__WEBPACK_IMPORTED_MODULE_3__[\"default\"])($, ctx);\n        }\n        catch (error) {\n            await ctx.reply(\"Something has gone wrong.\");\n        }\n        return next();\n    });\n    bot.hears(\"/r\", async (ctx, next) => {\n        try {\n            await ctx.reply(\"🔎\");\n            const { data } = await (0,_utils_getData__WEBPACK_IMPORTED_MODULE_2__[\"default\"])((0,_utils_randomText__WEBPACK_IMPORTED_MODULE_0__.getRandomArtist)());\n            const $ = cheerio__WEBPACK_IMPORTED_MODULE_1___default().load(data);\n            await (0,_utils_actions_sendResults__WEBPACK_IMPORTED_MODULE_3__[\"default\"])($, ctx);\n        }\n        catch (error) {\n            await ctx.reply(\"Something has gone wrong.\");\n        }\n        return next();\n    });\n    bot.hears(\"/top\", async (ctx, next) => {\n        try {\n            await ctx.reply(\"🔎\");\n            const { data } = await (0,_utils_getData__WEBPACK_IMPORTED_MODULE_2__[\"default\"])(\"__popular\");\n            const $ = cheerio__WEBPACK_IMPORTED_MODULE_1___default().load(data);\n            await (0,_utils_actions_sendResults__WEBPACK_IMPORTED_MODULE_3__[\"default\"])($, ctx);\n        }\n        catch (error) {\n            await ctx.reply(\"Something has gone wrong.\");\n        }\n        return next();\n    });\n    bot.hears(\"/analogs\", async (ctx, next) => {\n        try {\n            await ctx.reply(\"Similar bots: \\n @vkmusic_bot \\n @Mixvk_bot\");\n        }\n        catch (error) {\n            await ctx.reply(\"Something has gone wrong.\");\n        }\n        return next();\n    });\n    bot.hears(\"/sources\", async (ctx, next) => {\n        try {\n            await ctx.reply(\"Source is used to search for music: https://downloadmusicvk.ru/\");\n        }\n        catch (error) {\n            await ctx.reply(\"Something has gone wrong.\");\n        }\n        return next();\n    });\n    bot.hears(\"/dev\", async (ctx, next) => {\n        try {\n            await ctx.reply(\"@tgmusicfy\");\n            await ctx.reply(\"Deployed thanks to Heroku and New-Relic\");\n            await ctx.reply(\"GitHub: https://github.com/ssandry/tgmusicfy\");\n        }\n        catch (error) {\n            await ctx.reply(\"Something has gone wrong.\");\n        }\n        return next();\n    });\n    bot.launch();\n}\n\n\n//# sourceURL=webpack://tgmusicfy/./src/bot.ts?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ startBot)\n/* harmony export */ });\n/* harmony import */ var _commands_start__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./commands/start */ \"./src/commands/start.ts\");\n/* harmony import */ var _commands_help__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./commands/help */ \"./src/commands/help.ts\");\n/* harmony import */ var _commands_text__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./commands/text */ \"./src/commands/text.ts\");\n/* harmony import */ var _commands_recomendations__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./commands/recomendations */ \"./src/commands/recomendations.ts\");\n/* harmony import */ var _commands_top__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./commands/top */ \"./src/commands/top.ts\");\n/* harmony import */ var _commands_analogs__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./commands/analogs */ \"./src/commands/analogs.ts\");\n/* harmony import */ var _commands_sources__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./commands/sources */ \"./src/commands/sources.ts\");\n/* harmony import */ var _commands_dev__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./commands/dev */ \"./src/commands/dev.ts\");\n\n\n\n\n\n\n\n\nfunction startBot(bot) {\n    [\n        _commands_start__WEBPACK_IMPORTED_MODULE_0__.startBotCommand,\n        _commands_help__WEBPACK_IMPORTED_MODULE_1__.helpBotCommand,\n        _commands_text__WEBPACK_IMPORTED_MODULE_2__.textBotCommand,\n        _commands_recomendations__WEBPACK_IMPORTED_MODULE_3__.recomendationsBotCommand,\n        _commands_top__WEBPACK_IMPORTED_MODULE_4__.topBotCommand,\n        _commands_analogs__WEBPACK_IMPORTED_MODULE_5__.analogsBotCommand,\n        _commands_sources__WEBPACK_IMPORTED_MODULE_6__.sourcesBotCommand,\n        _commands_dev__WEBPACK_IMPORTED_MODULE_7__.devBotCommand,\n    ].map((command) => {\n        command(bot);\n    });\n    bot.launch();\n}\n\n\n//# sourceURL=webpack://tgmusicfy/./src/bot.ts?");
+
+/***/ }),
+
+/***/ "./src/commands/analogs.ts":
+/*!*********************************!*\
+  !*** ./src/commands/analogs.ts ***!
+  \*********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"analogsBotCommand\": () => (/* binding */ analogsBotCommand)\n/* harmony export */ });\nfunction analogsBotCommand(bot) {\n    bot.hears(\"/analogs\", async (ctx, next) => {\n        try {\n            await ctx.reply(\"Similar bots: \\n @vkmusic_bot \\n @Mixvk_bot\");\n        }\n        catch (error) {\n            await ctx.reply(\"Something has gone wrong.\");\n        }\n        return next();\n    });\n}\n\n\n\n//# sourceURL=webpack://tgmusicfy/./src/commands/analogs.ts?");
+
+/***/ }),
+
+/***/ "./src/commands/dev.ts":
+/*!*****************************!*\
+  !*** ./src/commands/dev.ts ***!
+  \*****************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"devBotCommand\": () => (/* binding */ devBotCommand)\n/* harmony export */ });\nfunction devBotCommand(bot) {\n    bot.hears(\"/dev\", async (ctx, next) => {\n        try {\n            await ctx.reply(\"@tgmusicfy\");\n            await ctx.reply(\"Deployed thanks to Heroku and New-Relic\");\n            await ctx.reply(\"GitHub: https://github.com/hschhhwwwo0o/tgmusicfy\");\n        }\n        catch (error) {\n            await ctx.reply(\"Something has gone wrong.\");\n        }\n        return next();\n    });\n}\n\n\n\n//# sourceURL=webpack://tgmusicfy/./src/commands/dev.ts?");
+
+/***/ }),
+
+/***/ "./src/commands/help.ts":
+/*!******************************!*\
+  !*** ./src/commands/help.ts ***!
+  \******************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"helpBotCommand\": () => (/* binding */ helpBotCommand)\n/* harmony export */ });\nfunction helpBotCommand(bot) {\n    bot.hears(\"/help\", async (ctx, next) => {\n        try {\n            await ctx.reply(\"Supported commands: \");\n            await ctx.reply(\"/recomedations (Or /r) - My favorite music that I'm only willing to share with you. \\n /top - Popular tracks. \\n /analogs - I will share with you similar bots. \\n /sources - List of sources where I search for music \\n /dev - About development\");\n            await ctx.reply(\"To search, simply enter the name of the artist, song\");\n        }\n        catch (error) {\n            await ctx.reply(\"Something has gone wrong.\");\n        }\n        return next();\n    });\n}\n\n\n\n//# sourceURL=webpack://tgmusicfy/./src/commands/help.ts?");
+
+/***/ }),
+
+/***/ "./src/commands/recomendations.ts":
+/*!****************************************!*\
+  !*** ./src/commands/recomendations.ts ***!
+  \****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"recomendationsBotCommand\": () => (/* binding */ recomendationsBotCommand)\n/* harmony export */ });\n/* harmony import */ var cheerio__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! cheerio */ \"./node_modules/cheerio/lib/index.js\");\n/* harmony import */ var cheerio__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(cheerio__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _utils_randomText__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../utils/randomText */ \"./src/utils/randomText.ts\");\n/* harmony import */ var _utils_getData__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../utils/getData */ \"./src/utils/getData.ts\");\n/* harmony import */ var _utils_actions_sendResults__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../utils/actions/sendResults */ \"./src/utils/actions/sendResults.ts\");\n\n\n\n\nfunction recomendationsBotCommand(bot) {\n    bot.hears(\"/recomedations\", async (ctx, next) => {\n        try {\n            await ctx.replyWithDice();\n            const { data } = await (0,_utils_getData__WEBPACK_IMPORTED_MODULE_2__[\"default\"])((0,_utils_randomText__WEBPACK_IMPORTED_MODULE_1__.getRandomArtist)());\n            const $ = cheerio__WEBPACK_IMPORTED_MODULE_0___default().load(data);\n            await (0,_utils_actions_sendResults__WEBPACK_IMPORTED_MODULE_3__[\"default\"])($, ctx);\n        }\n        catch (error) {\n            await ctx.reply(\"Something has gone wrong.\");\n        }\n        return next();\n    });\n    bot.hears(\"/r\", async (ctx, next) => {\n        try {\n            await ctx.reply(\"🔎\");\n            const { data } = await (0,_utils_getData__WEBPACK_IMPORTED_MODULE_2__[\"default\"])((0,_utils_randomText__WEBPACK_IMPORTED_MODULE_1__.getRandomArtist)());\n            const $ = cheerio__WEBPACK_IMPORTED_MODULE_0___default().load(data);\n            await (0,_utils_actions_sendResults__WEBPACK_IMPORTED_MODULE_3__[\"default\"])($, ctx);\n        }\n        catch (error) {\n            await ctx.reply(\"Something has gone wrong.\");\n        }\n        return next();\n    });\n}\n\n\n\n//# sourceURL=webpack://tgmusicfy/./src/commands/recomendations.ts?");
+
+/***/ }),
+
+/***/ "./src/commands/sources.ts":
+/*!*********************************!*\
+  !*** ./src/commands/sources.ts ***!
+  \*********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"sourcesBotCommand\": () => (/* binding */ sourcesBotCommand)\n/* harmony export */ });\nfunction sourcesBotCommand(bot) {\n    bot.hears(\"/sources\", async (ctx, next) => {\n        try {\n            await ctx.reply(\"Source is used to search for music: https://downloadmusicvk.ru/\");\n        }\n        catch (error) {\n            await ctx.reply(\"Something has gone wrong.\");\n        }\n        return next();\n    });\n}\n\n\n\n//# sourceURL=webpack://tgmusicfy/./src/commands/sources.ts?");
+
+/***/ }),
+
+/***/ "./src/commands/start.ts":
+/*!*******************************!*\
+  !*** ./src/commands/start.ts ***!
+  \*******************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"startBotCommand\": () => (/* binding */ startBotCommand)\n/* harmony export */ });\n/* harmony import */ var _utils_randomText__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/randomText */ \"./src/utils/randomText.ts\");\n\nfunction startBotCommand(bot) {\n    bot.start(async (ctx) => {\n        await ctx.reply(`Welcome, ${ctx.message.from.first_name}. \\n \\n To search, simply enter the name of the artist, song`);\n        await ctx.reply(\"See /help for a list of commands\");\n        await ctx.reply(\"Author: @ssandry0\");\n        await ctx.reply((0,_utils_randomText__WEBPACK_IMPORTED_MODULE_0__.getRandomHeart)());\n    });\n}\n\n\n\n//# sourceURL=webpack://tgmusicfy/./src/commands/start.ts?");
+
+/***/ }),
+
+/***/ "./src/commands/text.ts":
+/*!******************************!*\
+  !*** ./src/commands/text.ts ***!
+  \******************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"textBotCommand\": () => (/* binding */ textBotCommand)\n/* harmony export */ });\n/* harmony import */ var cheerio__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! cheerio */ \"./node_modules/cheerio/lib/index.js\");\n/* harmony import */ var cheerio__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(cheerio__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _utils_actions_sendResults__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../utils/actions/sendResults */ \"./src/utils/actions/sendResults.ts\");\n/* harmony import */ var _utils_getData__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../utils/getData */ \"./src/utils/getData.ts\");\n\n\n\nfunction textBotCommand(bot) {\n    bot.on(\"text\", async (ctx, next) => {\n        if (ctx.message.text[0] !== \"/\") {\n            try {\n                await ctx.reply(\"🔎\");\n                const { data } = await (0,_utils_getData__WEBPACK_IMPORTED_MODULE_2__[\"default\"])(ctx.message.text);\n                const $ = cheerio__WEBPACK_IMPORTED_MODULE_0___default().load(data);\n                await (0,_utils_actions_sendResults__WEBPACK_IMPORTED_MODULE_1__[\"default\"])($, ctx);\n            }\n            catch (error) {\n                await ctx.reply(\"Something has gone wrong.\");\n            }\n        }\n        return next();\n    });\n}\n\n\n\n//# sourceURL=webpack://tgmusicfy/./src/commands/text.ts?");
+
+/***/ }),
+
+/***/ "./src/commands/top.ts":
+/*!*****************************!*\
+  !*** ./src/commands/top.ts ***!
+  \*****************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"topBotCommand\": () => (/* binding */ topBotCommand)\n/* harmony export */ });\n/* harmony import */ var cheerio__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! cheerio */ \"./node_modules/cheerio/lib/index.js\");\n/* harmony import */ var cheerio__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(cheerio__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _utils_actions_sendResults__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../utils/actions/sendResults */ \"./src/utils/actions/sendResults.ts\");\n/* harmony import */ var _utils_getData__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../utils/getData */ \"./src/utils/getData.ts\");\n\n\n\nfunction topBotCommand(bot) {\n    bot.hears(\"/top\", async (ctx, next) => {\n        try {\n            await ctx.reply(\"🔎\");\n            const { data } = await (0,_utils_getData__WEBPACK_IMPORTED_MODULE_2__[\"default\"])(\"__popular\");\n            const $ = cheerio__WEBPACK_IMPORTED_MODULE_0___default().load(data);\n            await (0,_utils_actions_sendResults__WEBPACK_IMPORTED_MODULE_1__[\"default\"])($, ctx);\n        }\n        catch (error) {\n            await ctx.reply(\"Something has gone wrong.\");\n        }\n        return next();\n    });\n}\n\n\n\n//# sourceURL=webpack://tgmusicfy/./src/commands/top.ts?");
 
 /***/ }),
 
