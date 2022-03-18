@@ -40,7 +40,6 @@ export default function startBot(bot: Telegraf<Context<Update>>): void {
         await ctx.reply("Something has gone wrong.");
       }
     }
-
     return next();
   });
 
@@ -55,7 +54,6 @@ export default function startBot(bot: Telegraf<Context<Update>>): void {
     } catch (error) {
       await ctx.reply("Something has gone wrong.");
     }
-
     return next();
   });
 
@@ -70,7 +68,6 @@ export default function startBot(bot: Telegraf<Context<Update>>): void {
     } catch (error) {
       await ctx.reply("Something has gone wrong.");
     }
-
     return next();
   });
 
@@ -85,7 +82,6 @@ export default function startBot(bot: Telegraf<Context<Update>>): void {
     } catch (error) {
       await ctx.reply("Something has gone wrong.");
     }
-
     return next();
   });
 
@@ -95,7 +91,6 @@ export default function startBot(bot: Telegraf<Context<Update>>): void {
     } catch (error) {
       await ctx.reply("Something has gone wrong.");
     }
-
     return next();
   });
 
@@ -105,7 +100,6 @@ export default function startBot(bot: Telegraf<Context<Update>>): void {
     } catch (error) {
       await ctx.reply("Something has gone wrong.");
     }
-
     return next();
   });
 
@@ -113,11 +107,10 @@ export default function startBot(bot: Telegraf<Context<Update>>): void {
     try {
       await ctx.reply("@tgmusicfy");
       await ctx.reply("Deployed thanks to Heroku and New-Relic");
-      await ctx.reply("GitHub: https://github.com/ssandry/tgmusicfy");
+      await ctx.reply("GitHub: https://github.com/hschhhwwwo0o/tgmusicfy");
     } catch (error) {
       await ctx.reply("Something has gone wrong.");
     }
-
     return next();
   });
 
