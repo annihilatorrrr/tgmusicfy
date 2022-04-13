@@ -5,6 +5,7 @@ export const noResults: string[] = [
 ];
 export const heartsEmojies: string[] = ["💜", "💖", "💝", "💗", "💓"];
 export const recomendations: string[] = [
+  "Светлана Резанова",
   "VSN7, ▽",
   "Chiiild",
   "Itoko Toma",
