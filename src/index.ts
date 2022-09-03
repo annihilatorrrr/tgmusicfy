@@ -7,12 +7,12 @@ require("dotenv").config();
 
 const API_TOKEN: string = process.env.API_TOKEN || "";
 const PORT: string | 3000 = process.env.PORT || 3000;
-const URL: string = process.env.URL || "https://tgmusicfy.herokuapp.com/";
+const URL: string = process.env.URL || "https://tgmusicfy.onrender.com//";
 const bot: Telegraf<Context<Update>> = new Telegraf(process.env.TOKEN);
 const expressApp: Express = express();
 
-bot.telegram.setWebhook(`${URL}/bot${API_TOKEN}`);
-expressApp.use(bot.webhookCallback(`/bot${API_TOKEN}`));
+// bot.telegram.setWebhook(`${URL}/bot${API_TOKEN}`);
+// expressApp.use(bot.webhookCallback(`/bot${API_TOKEN}`));
 expressApp.get("/", (req: Request, res: Response) => {
   res.send("TGMusicfy Bot");
 });
