@@ -14,6 +14,7 @@ function textBotCommand(bot: Telegraf<Context<Update>>) {
         const $: CheerioAPI = cheerio.load(data);
         await sendResults($, ctx);
       } catch (error) {
+        await ctx.reply(JSON.stringify(error));
         await ctx.reply("Something has gone wrong.");
       }
     }
