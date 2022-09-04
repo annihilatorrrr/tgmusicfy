@@ -11,10 +11,12 @@ function textBotCommand(bot: Telegraf<Context<Update>>) {
       try {
         await ctx.reply("🔎");
         const { data }: IResponse = await getData(ctx.message.text);
+        await ctx.reply("getData: succesfull");
         const $: CheerioAPI = cheerio.load(data);
+        await ctx.reply("$: succesfull");
         await sendResults($, ctx);
+        await ctx.reply("sendResults: succesfull");
       } catch (error) {
-        await ctx.reply(JSON.stringify(error));
         await ctx.reply("Something has gone wrong.");
       }
     }
