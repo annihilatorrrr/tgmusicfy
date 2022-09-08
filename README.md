@@ -1,4 +1,4 @@
-
+⛔️ The bot no longer works. Heroku servers no longer support free use of background workers.
 
 ## @TGMusicfy
 
