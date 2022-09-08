@@ -15,8 +15,8 @@ const bot: Telegraf<Context<Update>> = new Telegraf(process.env.TOKEN, {
 });
 const expressApp: Express = express();
 
-// bot.telegram.setWebhook(`${URL}/bot${API_TOKEN}`);
-// expressApp.use(bot.webhookCallback(`/bot${API_TOKEN}`));
+bot.telegram.setWebhook(`${URL}/bot${API_TOKEN}`);
+expressApp.use(bot.webhookCallback(`/bot${API_TOKEN}`));
 expressApp.get("/", (req: Request, res: Response) => {
   res.send("TGMusicfy Bot");
 });
